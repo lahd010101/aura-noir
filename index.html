@@ -29,8 +29,30 @@
   <!-- Dual Store Header -->
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
-      <!-- Left: Store Switcher Pill -->
+      <!-- Left: Brand Logo / Identity -->
       <div class="header-left">
+        <a href="#" class="brand-identity" id="brandIdentityLink" title="Inicio">
+          <div class="logo-aura-wrapper" id="headerLogoAura">
+            <img src="/logo-aura-noir.png" alt="Aura Noir - Decants & Luxury" class="header-logo-img">
+          </div>
+          <div class="logo-vertice-wrapper hidden" id="headerLogoVertice">
+            <span class="vertice-logo-text">VÉRTICE</span>
+            <span class="vertice-logo-sub">CONCEPT STORE // TEPIC</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center: Main Navigation -->
+      <div class="header-center">
+        <nav class="nav-desktop" aria-label="Navegación Principal">
+          <ul class="nav-list" id="dynamicNavList">
+            <!-- Populated by JS based on active store -->
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Right: Store Switcher Pill & Actions -->
+      <div class="header-right">
         <div class="store-switcher" role="tablist" aria-label="Selector de Marca">
           <button class="switch-btn active" id="btnSwitchAura" data-store="aura" role="tab" aria-selected="true">
             <span class="switch-icon">⚜️</span>
@@ -38,31 +60,9 @@
           </button>
           <button class="switch-btn" id="btnSwitchVertice" data-store="vertice" role="tab" aria-selected="false">
             <span class="switch-icon">▲</span>
-            <span class="switch-text">VÉRTICE <small>Concept Store</small></span>
+            <span class="switch-text">VÉRTICE <small>Store</small></span>
           </button>
         </div>
-      </div>
-
-      <!-- Center: Brand Logo / Identity -->
-      <div class="header-center">
-        <a href="#" class="brand-identity" id="brandIdentityLink">
-          <div class="logo-aura-wrapper" id="headerLogoAura">
-            <img src="/logo-aura-noir.png" alt="Aura Noir - Decants & Luxury" class="header-logo-img">
-          </div>
-          <div class="logo-vertice-wrapper hidden" id="headerLogoVertice">
-            <span class="vertice-logo-text">VÉRTICE</span>
-            <span class="vertice-logo-sub">CONCEPT STORE // ELEVATE YOUR STANDARD</span>
-          </div>
-        </a>
-      </div>
-
-      <!-- Right: Quick Nav Links & Actions -->
-      <div class="header-right">
-        <nav class="nav-desktop" aria-label="Navegación Principal">
-          <ul class="nav-list" id="dynamicNavList">
-            <!-- Populated by JS based on active store -->
-          </ul>
-        </nav>
 
         <div class="header-actions">
           <button class="btn-action-icon" id="btnOpenQuiz" title="Test Olfativo: Encuentra tu Perfume">

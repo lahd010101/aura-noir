@@ -344,10 +344,7 @@ function renderDynamicNav() {
       <li class="nav-item"><a href="#verticeInHouseBlock">Drop 01</a></li>
       <li class="nav-item"><a href="#guestBrandsBlock">Marcas Invitadas</a></li>
       <li class="nav-item"><a href="#appMain">The Standard</a></li>
-      <li class="nav-item"><a href="javascript:void(0)" id="navBackToAura">Aura Noir Decants ⚜️</a></li>
     `;
-    const backTrigger = document.getElementById('navBackToAura');
-    if (backTrigger) backTrigger.onclick = () => switchStore('aura');
   }
 }
 
