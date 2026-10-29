@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --port 5173",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "vite build && powershell -Command \"Set-Location dist; git init; git config user.name 'Luis'; git config user.email 'luis@users.noreply.github.com'; git checkout -B gh-pages; git add -A; git commit -m 'Deploy build'; git remote add origin https://github.com/lahd010101/aura-noir.git; git push -f origin gh-pages; Set-Location ..; Remove-Item -Recurse -Force dist\\.git\""
   },
   "devDependencies": {
     "vite": "^5.0.0"
