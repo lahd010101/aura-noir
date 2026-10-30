@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AURA NOIR | Alta Perfumería & Decants de Autor</title>
-  <meta name="description" content="Decants de perfumes de lujo en atomizadores metálicos con grabado láser gratis. Extraemos la esencia pura de los perfumes más cotizados del mundo en Tepic, Nayarit y todo México.">
+  <title>AURA NOIR | Decants de Lujo & Concept Store • VÉRTICE</title>
+  <meta name="description" content="Decants de perfumes de lujo en atomizadores metálicos con grabado láser gratis. Concept Store de streetwear de alta gama VÉRTICE en Tepic, Nayarit y todo México.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
@@ -19,21 +19,25 @@
       <span>✨ <strong>GRABADO LÁSER GRATIS</strong> EN TU ATOMIZADOR METÁLICO DE 5 ML (+70 SPRAYS)</span>
       <span class="ticker-dot">•</span>
       <span>📍 <strong>TEPIC, NAYARIT:</strong> ENTREGAS EXPRESS Y PICK-UP EN CIUDAD DEL VALLE / PLAZA FÓRUM</span>
-      <span class="ticker-dot">•</span>
-      <span>🧪 <strong>100% AUTÉNTICO:</strong> CERO DILUCIONES, DECANTADO MÉDICO DIRECTO</span>
+      <span class="ticker-dot vertice-only">•</span>
+      <span class="vertice-only">🔥 <strong>CROSS-OFFER:</strong> $200 MXN DE DESCUENTO AL ARMAR TU FIT CON VÉRTICE STREETWEAR</span>
       <span class="ticker-dot">•</span>
       <span>🚚 ENVÍOS SEGUROS A TODO MÉXICO</span>
     </div>
   </div>
 
-  <!-- Luxury Store Header -->
+  <!-- Dual Store Header -->
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <!-- Left: Brand Logo / Identity -->
       <div class="header-left">
-        <a href="#" class="brand-identity" id="brandIdentityLink" title="Aura Noir - Inicio">
+        <a href="#" class="brand-identity" id="brandIdentityLink" title="Inicio">
           <div class="logo-aura-wrapper" id="headerLogoAura">
             <img src="/logo-aura-noir.png" alt="Aura Noir - Decants & Luxury" class="header-logo-img">
+          </div>
+          <div class="logo-vertice-wrapper hidden vertice-only" id="headerLogoVertice">
+            <span class="vertice-logo-text">VÉRTICE</span>
+            <span class="vertice-logo-sub">CONCEPT STORE // TEPIC</span>
           </div>
         </a>
       </div>
@@ -42,16 +46,24 @@
       <div class="header-center">
         <nav class="nav-desktop" aria-label="Navegación Principal">
           <ul class="nav-list" id="dynamicNavList">
-            <li class="nav-item"><a href="#catalogoDecants">Colección 5ml</a></li>
-            <li class="nav-item"><a href="#laserCustomizer">Estudio Láser</a></li>
-            <li class="nav-item"><a href="#discoveryBoxSection">Discovery Set</a></li>
-            <li class="nav-item"><a href="#pillarsSection">Garantía de Pureza</a></li>
+            <!-- Populated by JS based on active store -->
           </ul>
         </nav>
       </div>
 
-      <!-- Right: Actions -->
+      <!-- Right: Store Switcher Pill & Actions -->
       <div class="header-right">
+        <div class="store-switcher vertice-only" role="tablist" aria-label="Selector de Marca">
+          <button class="switch-btn active" id="btnSwitchAura" data-store="aura" role="tab" aria-selected="true">
+            <span class="switch-icon">⚜️</span>
+            <span class="switch-text">AURA NOIR <small>Decants</small></span>
+          </button>
+          <button class="switch-btn" id="btnSwitchVertice" data-store="vertice" role="tab" aria-selected="false">
+            <span class="switch-icon">▲</span>
+            <span class="switch-text">VÉRTICE <small>Store</small></span>
+          </button>
+        </div>
+
         <div class="header-actions">
           <button class="btn-action-icon" id="btnOpenQuiz" title="Test Olfativo: Encuentra tu Perfume">
             <span class="icon">🧭</span>
@@ -67,9 +79,12 @@
     </div>
   </header>
 
-  <!-- MAIN WRAPPER -->
+  <!-- MAIN WRAPPER (Switches between Aura Noir Hub and Vértice Lab) -->
   <main id="appMain">
 
+    <!-- ========================================== -->
+    <!-- SECTION 1: AURA NOIR STOREFRONT (DECANTS) -->
+    <!-- ========================================== -->
     <div id="viewAuraNoir" class="store-view active">
       
       <!-- HERO AURA NOIR -->
@@ -327,13 +342,13 @@
             <div class="discovery-info-col">
               <span class="section-tag">UNBOXING DEFINITIVO</span>
               <h2>Aura Noir Monolith Set (3 x 5ml)</h2>
-              <p>El cofre rígido magnético de regalo. Incluye 3 atomizadores metálicos con grabado láser a tu gusto y 225+ atomizaciones totales de las fragancias más cotizadas del mundo.</p>
+              <p>El cofre rígido magnético de regalo. Incluye 3 atomizadores metálicos con grabado láser a tu gusto, 225+ atomizaciones totales y la tarjeta VIP con <strong>$150 MXN de crédito</strong> para tu primera prenda en VÉRTICE.</p>
               
               <ul class="discovery-bullets">
-                <li>✦ 3 Decants de 5ml a tu elección (Total 225+ Sprays)</li>
+                <li>✦ 3 Fragancias nicho o diseñador en 5ml de alta densidad</li>
                 <li>✦ Cilindros metálicos en Negro, Oro Champagne y Plata</li>
-                <li>✦ Grabado láser personalizado gratuito en cada cilindro</li>
-                <li>✦ Caja rígida magnética para exhibición en tu tocador o buró</li>
+                <li>✦ Tarjeta física de membresía VÉRTICE con relieve plateado</li>
+                <li>✦ Caja rígida para exhibición en tu tocador o buró</li>
               </ul>
 
               <div class="discovery-price-row">
@@ -351,8 +366,47 @@
         </div>
       </section>
 
+      <!-- CONCEPT STORE CROSS-PROMO (BRIDGING AURA NOIR -> VÉRTICE) -->
+      <section class="concept-bridge-section vertice-only" id="conceptStoreSec">
+        <div class="container">
+          <div class="concept-bridge-grid">
+            <div class="concept-copy-col">
+              <span class="section-tag">CONCEPT STORE // AURA NOIR x VÉRTICE</span>
+              <h2>El perfume adecuado en el outfit equivocado pierde su poder.</h2>
+              <p>
+                Un aroma de lujo exige un corte impecable. Por eso creamos <strong>VÉRTICE</strong>: prendas de algodón pesado (260 a 440 GSM) con estructura rígida y bordados de alta densidad diseñados para complementar tu presencia.
+              </p>
+              
+              <div class="cross-promo-callout">
+                <div class="callout-icon">🏷️</div>
+                <div class="callout-text">
+                  <strong>Promoción Cruzada Automática:</strong>
+                  <span>Lleva cualquier decant + una prenda VÉRTICE y recibe <strong>-$200 MXN</strong> de descuento en tu bolsa.</span>
+                </div>
+              </div>
+
+              <button class="btn btn-silver" id="btnGoToVerticeFromBridge">
+                <span>EXPLORAR VÉRTICE STREETWEAR</span>
+                <span>▲</span>
+              </button>
+            </div>
+
+            <div class="concept-visual-col">
+              <div class="concept-look-card">
+                <img src="/vertice-streetwear.jpg" alt="Vértice Streetwear Heavyweight Lookbook" class="concept-img">
+                <div class="concept-overlay">
+                  <span class="look-badge">The Signature Fit</span>
+                  <h4>Structural Hoodie 440 GSM + Tom Ford Noir Extreme</h4>
+                  <p>Presencia masculina impenetrable.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- TESTIMONIALS & TEPIC PROOF -->
-      <section class="social-proof-section" id="socialProof">
+      <section class="social-proof-section">
         <div class="container">
           <div class="section-header text-center">
             <span class="section-tag">COMUNIDAD EXCLUSIVA</span>
@@ -369,7 +423,7 @@
             </div>
             <div class="review-card">
               <div class="stars">★★★★★</div>
-              <p>"Pedí el cofre de 3 decants con grabado láser personalizado. La presentación de la caja y los atomizadores metálicos se sienten como un producto de alta gama. Llegó rapidísimo aquí en Tepic."</p>
+              <p>"Pedí el cofre con 3 decants y me llegó al día siguiente aquí en Tepic. La tarjeta de descuento de VÉRTICE ya la usé para el hoodie de 440g y la tela está pesadísima."</p>
               <div class="reviewer-meta">
                 <strong>Carlos Mendoza</strong>
                 <small>Tepic, Nayarit • Cliente VIP</small>
@@ -382,6 +436,159 @@
                 <strong>Mateo G.</strong>
                 <small>Guadalajara, Jal. • Envío Nacional</small>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 2: VÉRTICE STOREFRONT (STREETWEAR) -->
+    <!-- ========================================== -->
+    <div id="viewVertice" class="store-view vertice-only">
+      
+      <!-- HERO VÉRTICE -->
+      <section class="hero-section hero-vertice">
+        <div class="vertice-hero-bg"></div>
+        <div class="container hero-grid">
+          <div class="hero-text-block">
+            <div class="vertice-tag-badge">
+              <span>DROP 01 // 50 PIEZAS POR CORTE // HEAVYWEIGHT ARCHITECTURE</span>
+            </div>
+            <h1 class="vertice-hero-title">
+              ELEVATE YOUR<br>
+              <span class="text-silver-gradient">STANDARD.</span>
+            </h1>
+            <p class="vertice-hero-desc">
+              Diseñado para hombres que no negocian la caída de una prenda. Algodón peinado de 260 a 440 GSM, bordados de 30,000 puntadas en hilo plata mate y siluetas con estructura pura. Hecho en México con corte contemporáneo.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#verticeDropGrid" class="btn btn-silver">
+                <span>INGRESAR AL DROP 01</span>
+                <span>▲</span>
+              </a>
+              <button class="btn btn-outline-silver" id="btnBackToAuraFromHero">
+                <span>VOLVER A AURA NOIR DECANTS</span>
+                <span>⚜️</span>
+              </button>
+            </div>
+            <div class="drop-countdown-bar">
+              <span class="pulse-indicator"></span>
+              <strong>STOCK DROP 01 EN VIVO:</strong> Quedan 23 de 50 piezas confeccionadas en este tiraje.
+            </div>
+          </div>
+
+          <div class="hero-visual-block">
+            <div class="vertice-editorial-card">
+              <img src="/vertice-streetwear.jpg" alt="VÉRTICE Luxury Streetwear Hoodie" class="vertice-hero-img">
+              <div class="vertice-corner-tag">VERTICE / 01</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- THE STANDARD (MATERIAL ENGINEERING) -->
+      <section class="vertice-blueprint-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-tag silver">INGENIERÍA TEXTIL</span>
+            <h2 class="section-title text-bone">The Standard Manifesto</h2>
+            <p class="section-subtitle">Por qué nuestras prendas tienen una presencia y peso incomparables.</p>
+          </div>
+
+          <div class="blueprint-grid">
+            <div class="blueprint-card">
+              <span class="bp-number">01</span>
+              <h3>260 - 440 GSM</h3>
+              <p>Gramaje ultra denso. La prenda no se pega al cuerpo; cae recta con arquitectura y silueta imponente.</p>
+            </div>
+            <div class="blueprint-card">
+              <span class="bp-number">02</span>
+              <h3>Bordados HD de Precisión</h3>
+              <p>Bordado industrial computarizado con más de 30,000 puntadas que no se cuartean ni se borran con las lavadas.</p>
+            </div>
+            <div class="blueprint-card">
+              <span class="bp-number">03</span>
+              <h3>Cero Sobreproducción</h3>
+              <p>Trabajamos bajo tirajes limitados (On-Demand). Cada prenda cuenta con etiqueta seriada para garantizar autenticidad.</p>
+            </div>
+            <div class="blueprint-card">
+              <span class="bp-number">04</span>
+              <h3>Aroma de Cortesía</h3>
+              <p>Cada paquete VÉRTICE se aromatiza con notas de nicho y viene acompañado de muestras exclusivas de Aura Noir.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONCEPT STORE APPAREL SHOWCASE (IN-HOUSE & CURATED ARCHIVE) -->
+      <section class="vertice-catalog-section" id="verticeDropGrid">
+        <div class="container">
+          
+          <!-- 1. VÉRTICE IN-HOUSE FLAGSHIP LINE -->
+          <div class="inhouse-collection-block" id="verticeInHouseBlock">
+            <div class="collection-header-row">
+              <div class="collection-title-wrap">
+                <span class="section-tag silver">COLECCIÓN DE LA CASA // HEAVYWEIGHT 440 GSM</span>
+                <h2 class="section-title text-bone">VÉRTICE // DROP 01</h2>
+                <p class="section-subtitle">Confección arquitectónica de nuestra firma propia. Siluetas estructuradas, cortes boxy y bordados de 30,000 puntadas.</p>
+              </div>
+              <div class="inhouse-status-pill">
+                <span class="pulse-indicator"></span>
+                <span>TIRAJE LIMITADO // EDICIÓN NUMERADA</span>
+              </div>
+            </div>
+
+            <div class="vertice-grid" id="verticeInHouseGrid">
+              <!-- Rendered by JS: Only VÉRTICE In-House pieces -->
+            </div>
+          </div>
+
+          <!-- CONCEPT STORE CURATION DIVIDER -->
+          <div class="concept-store-divider">
+            <div class="divider-line"></div>
+            <div class="divider-badge">
+              <span>THE CURATED ARCHIVE // MARCAS INVITADAS</span>
+            </div>
+            <div class="divider-line"></div>
+          </div>
+
+          <!-- 2. GUEST BRANDS & CURATED STREETWEAR -->
+          <div class="guest-brands-block" id="guestBrandsBlock">
+            <div class="collection-header-row">
+              <div class="collection-title-wrap">
+                <span class="section-tag">CURADURÍA DE MODA // GUEST BRANDS</span>
+                <h2 class="section-title text-bone">Marcas Invitadas & Co-Labs</h2>
+                <p class="section-subtitle">Firmas de streetwear, archivo y denim seleccionadas por VÉRTICE Concept Store para complementar tu rotación.</p>
+              </div>
+
+              <!-- Brand Filter Pill Selector for Guest Brands -->
+              <div class="brand-filter-bar" id="apparelBrandFilterBar">
+                <!-- Populated by JS: Todas las Marcas, Obsidian Archive, Atelier Nayarit, etc. -->
+              </div>
+            </div>
+
+            <div class="vertice-grid" id="verticeGuestGrid">
+              <!-- Rendered by JS: Guest brands items -->
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VÉRTICE CROSS-PERFUME BANNER -->
+      <section class="vertice-perfume-invite">
+        <div class="container">
+          <div class="invite-box">
+            <div class="invite-content">
+              <span class="section-tag">EL DUETO PERFECTO</span>
+              <h2>¿Ya tienes tu aroma insignia para este fit?</h2>
+              <p>Aura Noir es el hub oficial de fragancias de lujo para vestir con VÉRTICE. Lleva tu decant con grabado láser personalizado y recibe $200 MXN de descuento instantáneo en tu bolsa.</p>
+              <button class="btn btn-gold" id="btnSwitchToAuraFromVerticeBanner">
+                <span>SELECCIONAR TU FRAGANCIA EN AURA NOIR</span>
+                <span>⚜️</span>
+              </button>
             </div>
           </div>
         </div>
@@ -437,6 +644,10 @@
     </div>
 
     <!-- Bundle Savings Notification Banner -->
+    <div class="bundle-banner vertice-only hidden" id="bundleBanner">
+      <span>🎉 <strong>¡Combo Élite Activado!</strong> Descuento cruzado de -$200 MXN aplicado por combinar Decant + Prenda VÉRTICE.</span>
+    </div>
+
     <!-- Cart Items List -->
     <div class="cart-items-list" id="cartItemsList">
       <!-- Empty state or items rendered by JS -->
@@ -606,6 +817,26 @@
           <p>Edita en tiempo real precios, inventario, marcas de ropa, promociones y cupones.</p>
         </div>
         <button class="modal-close" id="btnCloseAdmin">&times;</button>
+      </div>
+
+      <!-- LAUNCH MODE TOGGLE BAR -->
+      <div class="admin-launch-mode-bar">
+        <div class="launch-mode-content">
+          <div class="launch-mode-icon">🚀</div>
+          <div>
+            <strong style="font-size:0.85rem; letter-spacing:0.05em; color:#fff;">MODO PÚBLICO:</strong>
+            <span id="adminVerticeStatusText" style="color: #10b981; font-weight: 700; margin-left: 0.35rem; font-size:0.85rem;">SOLO AURA NOIR (Perfumería)</span>
+            <p style="margin: 0.2rem 0 0; font-size: 0.78rem; color: #888;">
+              VÉRTICE Streetwear se mantiene oculto a los clientes para no confundir mientras se desarrolla la mercancía. Actívalo aquí cuando estés listo para el lanzamiento oficial.
+            </p>
+          </div>
+        </div>
+        <div class="launch-mode-toggle-action">
+          <label class="switch-toggle" title="Activar/Desactivar VÉRTICE en la web">
+            <input type="checkbox" id="adminToggleVertice">
+            <span class="switch-slider"></span>
+          </label>
+        </div>
       </div>
 
       <!-- Admin Navigation Tabs -->
@@ -796,13 +1027,23 @@
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h4>Garantía de Pureza</h4>
+      <div class="footer-col vertice-only">
+        <h4>VÉRTICE Streetwear</h4>
         <ul>
-          <li>Decantado con jeringas de grado médico</li>
-          <li>Atomizadores metálicos blindados</li>
-          <li>Grabado láser personalizado gratuito</li>
-          <li>100% Fragancias auténticas originales</li>
+          <li><a href="#" id="footerLinkVertice">Drop 01 // Heavyweight</a></li>
+          <li><a href="#" id="footerLinkBlueprint">The Standard Manifesto</a></li>
+          <li><a href="#conceptStoreSec">Concept Store Combo</a></li>
+          <li><a href="#">Tallas y Cuidado</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col aura-only">
+        <h4>Compromiso de Pureza</h4>
+        <ul>
+          <li>Fragancias 100% Originales</li>
+          <li>Extracción Directa sin Diluir</li>
+          <li>Atomizadores de Aluminio Herméticos</li>
+          <li>Garantía de Satisfacción Total</li>
         </ul>
       </div>
 
@@ -823,7 +1064,8 @@
 
     <div class="footer-bottom">
       <div class="container bottom-flex">
-        <p>© 2026 AURA NOIR. Alta Perfumería & Decants de Autor. Tepic, Nayarit. Todos los derechos reservados.</p>
+        <p class="aura-only">© 2026 AURA NOIR. Decants de Perfumes de Lujo y Nicho. Tepic, Nayarit. Todos los derechos reservados.</p>
+        <p class="vertice-only">© 2026 AURA NOIR & VÉRTICE. Todos los derechos reservados. Hecho para hombres que marcan su propio estándar.</p>
         <div class="payment-icons-row">
           <span>VISA</span>
           <span>MASTERCARD</span>
