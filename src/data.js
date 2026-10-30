@@ -258,7 +258,7 @@ export const DISCOVERY_SETS = [
     price: 1190,
     originalValue: 1450,
     badge: "Edición Coleccionista",
-    image: "./aura-discovery-box-vip15.jpg?v=20261030",
+    image: "./aura-discovery-box-vip15.jpg?v=auranext",
     description: "Caja rígida magnética forrada en negro mate con grabado hot-stamping, cuna de terciopelo y 3 atomizadores metálicos con grabado láser a elegir: Tom Ford Noir Extreme, Creed Aventus y Xerjoff Naxos. Incluye exclusiva Tarjeta VIP Aura Noir con 15% de descuento en tu próxima compra mayor a $500 MXN.",
     includes: ["3 Atomizadores metálicos grabados con láser", "15 ml de extracto original (225+ sprays)", "Tarjeta física VIP Aura Noir 15% OFF", "Caja rígida con cierre magnético"]
   }
@@ -381,6 +381,7 @@ export const DEFAULT_PROMOTIONS = {
   tepicShippingCost: 50,
   nationalShippingCost: 149,
   coupons: [
+    { code: "AURANEXT15", discountPercent: 15, minPurchase: 500, description: "15% de Descuento en tu próxima compra (Tarjeta VIP Aura Noir)" },
     { code: "VIP15", discountPercent: 15, minPurchase: 500, description: "15% de Descuento en compras mayores a $500 MXN (Tarjeta VIP)" },
     { code: "AURA150", discount: 150, description: "Descuento VIP General" },
     { code: "TEPICVIP", discount: 100, description: "Descuento Local Tepic" },
