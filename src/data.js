@@ -381,6 +381,7 @@ export const DEFAULT_PROMOTIONS = {
   tepicShippingCost: 50,
   nationalShippingCost: 149,
   coupons: [
+    { code: "VIP15", discountPercent: 15, minPurchase: 500, description: "15% de Descuento en compras mayores a $500 MXN (Tarjeta VIP)" },
     { code: "AURA150", discount: 150, description: "Descuento VIP General" },
     { code: "TEPICVIP", discount: 100, description: "Descuento Local Tepic" },
     { code: "VERTICE200", discount: 200, description: "Promoción Especial Streetwear" }

@@ -1298,11 +1298,27 @@ function initPromoCodeEngine() {
     // Check dynamic coupons
     const match = state.promotions.coupons.find(c => c.code.toUpperCase() === code);
     if (match) {
-      state.promoDiscount = match.discount;
+      const subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      // Check minimum purchase requirement if set
+      if (match.minPurchase && subtotal < match.minPurchase) {
+        showToast(`Este cupón es válido en compras mayores a $${match.minPurchase} MXN`, 'warning');
+        return;
+      }
+
+      // Calculate percentage or fixed discount
+      let discountVal = 0;
+      if (match.discountPercent) {
+        discountVal = Math.round((subtotal * match.discountPercent) / 100);
+      } else {
+        discountVal = match.discount || 0;
+      }
+
+      state.promoDiscount = discountVal;
       state.promoCode = match.code;
-      showToast(`¡Cupón ${match.code} aplicado! -$${match.discount} MXN de descuento`, 'success');
+      showToast(`¡Cupón ${match.code} aplicado! -$${discountVal} MXN de descuento`, 'success');
       els.discountTag.classList.remove('hidden');
-      els.discountAmount.textContent = `-$${match.discount} MXN`;
+      els.discountAmount.textContent = `-$${discountVal} MXN`;
     } else {
       showToast('Código no válido o expirado', 'gold');
       return;
@@ -2333,25 +2349,20 @@ function setupGlobalEvents() {
   els.btnAddDiscoverySet.onclick = () => {
     sounds.playSpray();
     const set = DISCOVERY_SETS[0];
-    const verticeActive = isVerticeEnabled();
     addToCart({
       id: `set-${set.id}-${Date.now()}`,
       refId: set.id,
       type: 'discovery',
-      name: verticeActive 
-        ? 'Aura Noir Monolith Set (3x5ml) + Tarjeta Regalo VÉRTICE' 
-        : 'Aura Noir Monolith Set (3x5ml) Cofre de Lujo',
+      name: 'Aura Noir Monolith Set (3x5ml) + Tarjeta VIP 15% OFF',
       price: set.price,
-      image: verticeActive ? '/aura-discovery-box.jpg' : '/aura-discovery-box-pure.jpg',
+      image: '/aura-discovery-box.jpg',
       engraving: {
         text: 'MONOLITH VIP',
         color: 'noir',
         font: 'font-serif'
       }
     });
-    showToast(verticeActive 
-      ? 'Cofre Monolith + Tarjeta VIP Vértice agregados a tu bolsa' 
-      : 'Cofre Monolith (3x5ml) de Lujo agregado a tu bolsa', 'gold');
+    showToast('Cofre Monolith + Tarjeta VIP 15% OFF agregados a tu bolsa', 'gold');
     openCart();
   };
 
