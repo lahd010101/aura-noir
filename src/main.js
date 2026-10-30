@@ -241,6 +241,13 @@ const els = {
   toastContainer: document.getElementById('toastContainer'),
   footerLinkVertice: document.getElementById('footerLinkVertice'),
 
+  // Visual Live Editor Elements
+  liveEditorToolbar: document.getElementById('liveEditorToolbar'),
+  btnLaunchVisualEditor: document.getElementById('btnLaunchVisualEditor'),
+  btnSaveVisualEdits: document.getElementById('btnSaveVisualEdits'),
+  btnResetVisualEdits: document.getElementById('btnResetVisualEdits'),
+  btnExitVisualEditor: document.getElementById('btnExitVisualEditor'),
+
   // Back Office Elements
   adminAuthModal: document.getElementById('adminAuthModal'),
   formAdminAuth: document.getElementById('formAdminAuth'),
@@ -1451,6 +1458,102 @@ function initCheckoutListeners() {
 }
 
 /* ===================================================================
+   LIVE VISUAL WYSIWYG EDITOR SYSTEM
+   =================================================================== */
+let isVisualEditorActive = false;
+
+function setupEditableDOM() {
+  const targetSelectors = [
+    '.hero-title',
+    '.hero-subtitle',
+    '.tagline-sub',
+    '.section-tag',
+    '.section-title',
+    '.section-subtitle',
+    '.concept-bridge-grid h2',
+    '.concept-copy-col p',
+    '.callout-text strong',
+    '.callout-text span',
+    '.discovery-info-col h2',
+    '.discovery-info-col p',
+    '.discovery-bullets li',
+    '.review-card p',
+    '.reviewer-meta strong',
+    '.reviewer-meta small',
+    '.vertice-hero-title',
+    '.vertice-hero-desc',
+    '.announcement-bar .ticker-content span:not(.ticker-dot)',
+    '.site-footer .footer-col h4',
+    '.site-footer .footer-col li',
+    '.site-footer .footer-bottom p'
+  ];
+
+  let counter = 0;
+  const savedTexts = JSON.parse(localStorage.getItem('aura_site_texts') || '{}');
+
+  targetSelectors.forEach(selector => {
+    document.querySelectorAll(selector).forEach(el => {
+      // Don't mark modal internals, buttons or toolbar
+      if (el.closest('.modal-card') || el.closest('#liveEditorToolbar')) return;
+
+      counter++;
+      const key = el.dataset.editable || `editable_elem_${counter}`;
+      el.dataset.editable = key;
+
+      // Apply saved content if exists
+      if (savedTexts[key] !== undefined) {
+        el.innerHTML = savedTexts[key];
+      }
+    });
+  });
+}
+
+function toggleVisualEditor(active) {
+  isVisualEditorActive = active;
+  document.body.classList.toggle('visual-editor-active', active);
+
+  document.querySelectorAll('[data-editable]').forEach(el => {
+    if (active) {
+      el.setAttribute('contenteditable', 'true');
+      el.setAttribute('spellcheck', 'false');
+    } else {
+      el.removeAttribute('contenteditable');
+      el.removeAttribute('spellcheck');
+    }
+  });
+
+  if (active) {
+    if (els.adminModal) els.adminModal.classList.remove('open');
+    showToast('✏️ Editor Visual Activado: Haz clic en cualquier texto para modificarlo.', 'gold');
+    sounds.playClick();
+  } else {
+    showToast('Modo de edición finalizado.', 'info');
+  }
+}
+
+function saveVisualEdits() {
+  const texts = {};
+  document.querySelectorAll('[data-editable]').forEach(el => {
+    const key = el.dataset.editable;
+    if (key) {
+      texts[key] = el.innerHTML;
+    }
+  });
+
+  localStorage.setItem('aura_site_texts', JSON.stringify(texts));
+  sounds.playLaser();
+  showToast('💾 ¡Todos los textos de la página han sido guardados!', 'success');
+}
+
+function resetVisualEdits() {
+  if (confirm('¿Deseas restablecer todos los textos originales de la página?')) {
+    localStorage.removeItem('aura_site_texts');
+    showToast('Textos restablecidos a los originales de fábrica.', 'info');
+    setTimeout(() => window.location.reload(), 400);
+  }
+}
+
+/* ===================================================================
    BACK OFFICE & ADMIN CONTROL PANEL ENGINE
    =================================================================== */
 function initBackOffice() {
@@ -1559,6 +1662,16 @@ function initBackOffice() {
   });
 
   if (els.btnCloseAdmin) els.btnCloseAdmin.onclick = closeAdmin;
+
+  // Live Visual Editor Launch & Controls
+  if (els.btnLaunchVisualEditor) {
+    els.btnLaunchVisualEditor.onclick = () => {
+      toggleVisualEditor(true);
+    };
+  }
+  if (els.btnSaveVisualEdits) els.btnSaveVisualEdits.onclick = saveVisualEdits;
+  if (els.btnResetVisualEdits) els.btnResetVisualEdits.onclick = resetVisualEdits;
+  if (els.btnExitVisualEditor) els.btnExitVisualEditor.onclick = () => toggleVisualEditor(false);
 
   // Change Admin PIN Handler
   if (els.btnChangeAdminPin && els.inputNewAdminPin) {
@@ -2242,11 +2355,17 @@ function setupGlobalEvents() {
         window.appRequestAdminAccess();
       }
     }
+    // Secret Visual Editor Shortcut: Press Alt + E (or Ctrl + Shift + E)
+    if ((e.ctrlKey && e.shiftKey && e.code === 'KeyE') || (e.altKey && e.code === 'KeyE')) {
+      e.preventDefault();
+      toggleVisualEditor(!isVisualEditorActive);
+    }
   });
 }
 
 /* Initialization */
 document.addEventListener('DOMContentLoaded', () => {
+  setupEditableDOM();
   applyVerticeVisibility();
   renderDynamicNav();
   initLaserStudio();

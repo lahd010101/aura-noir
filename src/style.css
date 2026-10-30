@@ -160,6 +160,86 @@ body:not(.vertice-disabled) .aura-only {
   background-color: #ffffff;
 }
 
+/* ===================================================================
+   LIVE VISUAL WYSIWYG EDITOR SYSTEM
+   =================================================================== */
+body.visual-editor-active [data-editable] {
+  outline: 1.5px dashed rgba(212, 175, 55, 0.45) !important;
+  outline-offset: 3px !important;
+  cursor: text !important;
+  transition: outline-color 0.2s, background 0.2s;
+  border-radius: 3px;
+}
+
+body.visual-editor-active [data-editable]:hover {
+  outline: 1.5px solid var(--gold-bright) !important;
+  background: rgba(212, 175, 55, 0.08) !important;
+}
+
+body.visual-editor-active [data-editable]:focus {
+  outline: 2px solid #10b981 !important;
+  background: rgba(16, 185, 129, 0.12) !important;
+}
+
+/* Floating Editor Bar */
+.live-editor-toolbar {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(14, 16, 22, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--gold-border);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(212, 175, 55, 0.2);
+  border-radius: var(--radius-full);
+  padding: 0.6rem 1.4rem;
+  animation: editorSlideDown 0.3s ease-out;
+}
+
+body.visual-editor-active .live-editor-toolbar {
+  display: flex !important;
+}
+
+@keyframes editorSlideDown {
+  from { transform: translate(-50%, -30px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.editor-toolbar-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold-bright);
+}
+
+.editor-toolbar-pulse {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseGreen 1.5s infinite;
+}
+
+@keyframes pulseGreen {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+.editor-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
 /* Typography Helpers */
 h1, h2, h3, h4, .brand-font {
   font-family: var(--font-serif);

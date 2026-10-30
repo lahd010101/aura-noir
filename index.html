@@ -13,6 +13,27 @@
 <body class="theme-aura">
   <!-- Audio FX (Web Audio API generated clicks/sprays) -->
   
+  <!-- LIVE VISUAL EDITOR TOOLBAR (Control flotante en vivo) -->
+  <aside class="live-editor-toolbar" id="liveEditorToolbar" role="toolbar" aria-label="Editor en vivo">
+    <div class="editor-toolbar-badge">
+      <span class="editor-toolbar-pulse"></span>
+      <span>MODO EDICIÓN EN VIVO</span>
+    </div>
+    <span style="color:#555; font-size:0.8rem;">|</span>
+    <span style="font-size:0.75rem; color:#aaa;">Haz clic en cualquier texto para editarlo directamente</span>
+    <div class="editor-toolbar-actions">
+      <button type="button" class="btn btn-gold btn-sm" id="btnSaveVisualEdits">
+        <span>💾 Guardar Cambios</span>
+      </button>
+      <button type="button" class="btn btn-outline-silver btn-sm" id="btnResetVisualEdits" title="Restablecer textos originales">
+        <span>🔄 Deshacer</span>
+      </button>
+      <button type="button" class="btn btn-outline-gold btn-sm" id="btnExitVisualEditor" title="Salir del modo edición">
+        <span>✕ Salir</span>
+      </button>
+    </div>
+  </aside>
+
   <!-- Ticker / Top Announcement Bar -->
   <div class="announcement-bar" id="announcementBar">
     <div class="ticker-content">
@@ -858,7 +879,12 @@
           <h2>Back Office • Aura Noir & Concept Store</h2>
           <p>Edita en tiempo real precios, inventario, marcas de ropa, promociones y cupones.</p>
         </div>
-        <button class="modal-close" id="btnCloseAdmin">&times;</button>
+        <div style="display:flex; align-items:center; gap:0.8rem; flex-wrap:wrap;">
+          <button type="button" class="btn btn-gold btn-sm" id="btnLaunchVisualEditor" style="box-shadow: 0 0 16px rgba(212,175,55,0.3); font-weight:700;">
+            <span>✏️ Activar Editor Visual en Vivo</span>
+          </button>
+          <button class="modal-close" id="btnCloseAdmin">&times;</button>
+        </div>
       </div>
 
       <!-- LAUNCH MODE TOGGLE BAR -->
