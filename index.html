@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA NOIR | Decants de Lujo & Concept Store • VÉRTICE</title>
+  <meta name="description" content="Decants de perfumes de lujo en atomizadores metálicos con grabado láser gratis. Concept Store de streetwear de alta gama VÉRTICE en Tepic, Nayarit y todo México.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="./assets/index-D4mkVmjL.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BggimYXf.css">
+</head>
+<body class="theme-aura">
+  <!-- Audio FX (Web Audio API generated clicks/sprays) -->
+  
+  <!-- LIVE VISUAL EDITOR TOOLBAR (Control flotante en vivo) -->
+  <aside class="live-editor-toolbar" id="liveEditorToolbar" role="toolbar" aria-label="Editor en vivo">
+    <div class="editor-toolbar-badge">
+      <span class="editor-toolbar-pulse"></span>
+      <span>MODO EDICIÓN EN VIVO</span>
+    </div>
+    <span style="color:#555; font-size:0.8rem;">|</span>
+    <span style="font-size:0.75rem; color:#aaa;">Haz clic en cualquier texto para editarlo directamente</span>
+    <div class="editor-toolbar-actions">
+      <button type="button" class="btn btn-gold btn-sm" id="btnSaveVisualEdits">
+        <span>💾 Guardar Cambios</span>
+      </button>
+      <button type="button" class="btn btn-outline-silver btn-sm" id="btnResetVisualEdits" title="Restablecer textos originales">
+        <span>🔄 Deshacer</span>
+      </button>
+      <button type="button" class="btn btn-outline-gold btn-sm" id="btnExitVisualEditor" title="Salir del modo edición">
+        <span>✕ Salir</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Ticker / Top Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="ticker-content">
+      <span>✨ <strong>GRABADO LÁSER GRATIS</strong> EN TU ATOMIZADOR METÁLICO DE 5 ML (+70 SPRAYS)</span>
+      <span class="ticker-dot">•</span>
+      <span>📍 <strong>TEPIC, NAYARIT:</strong> ENTREGAS EXPRESS Y PICK-UP EN CIUDAD DEL VALLE / PLAZA FÓRUM</span>
+      <span class="ticker-dot vertice-only">•</span>
+      <span class="vertice-only">🔥 <strong>CROSS-OFFER:</strong> $200 MXN DE DESCUENTO AL ARMAR TU FIT CON VÉRTICE STREETWEAR</span>
+      <span class="ticker-dot">•</span>
+      <span>🚚 ENVÍOS SEGUROS A TODO MÉXICO</span>
+    </div>
+  </div>
+
+  <!-- Dual Store Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <!-- Left: Brand Logo / Identity -->
+      <div class="header-left">
+        <a href="#" class="brand-identity" id="brandIdentityLink" title="Inicio">
+          <div class="logo-aura-wrapper" id="headerLogoAura">
+            <img src="./logo-aura-noir.png" alt="Aura Noir - Decants & Luxury" class="header-logo-img">
+          </div>
+          <div class="logo-vertice-wrapper hidden vertice-only" id="headerLogoVertice">
+            <span class="vertice-logo-text">VÉRTICE</span>
+            <span class="vertice-logo-sub">CONCEPT STORE // TEPIC</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center: Main Navigation -->
+      <div class="header-center">
+        <nav class="nav-desktop" aria-label="Navegación Principal">
+          <ul class="nav-list" id="dynamicNavList">
+            <!-- Populated by JS based on active store -->
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Right: Store Switcher Pill & Actions -->
+      <div class="header-right">
+        <div class="store-switcher vertice-only" role="tablist" aria-label="Selector de Marca">
+          <button class="switch-btn active" id="btnSwitchAura" data-store="aura" role="tab" aria-selected="true">
+            <span class="switch-icon">⚜️</span>
+            <span class="switch-text">AURA NOIR <small>Decants</small></span>
+          </button>
+          <button class="switch-btn" id="btnSwitchVertice" data-store="vertice" role="tab" aria-selected="false">
+            <span class="switch-icon">▲</span>
+            <span class="switch-text">VÉRTICE <small>Store</small></span>
+          </button>
+        </div>
+
+        <div class="header-actions">
+          <button class="btn-action-icon" id="btnOpenQuiz" title="Test Olfativo: Encuentra tu Perfume">
+            <span class="icon">🧭</span>
+            <span class="action-label">Test Olfativo</span>
+          </button>
+          <button class="btn-action-icon cart-trigger" id="btnOpenCart" title="Ver Carrito">
+            <span class="icon">🛍️</span>
+            <span class="cart-badge" id="cartCountBadge">0</span>
+            <span class="action-label">Bolsa</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER (Switches between Aura Noir Hub and Vértice Lab) -->
+  <main id="appMain">
+
+    <!-- ========================================== -->
+    <!-- SECTION 1: AURA NOIR STOREFRONT (DECANTS) -->
+    <!-- ========================================== -->
+    <div id="viewAuraNoir" class="store-view active">
+      
+      <!-- HERO AURA NOIR -->
+      <section class="hero-section hero-aura">
+        <div class="hero-bg-overlay"></div>
+        <div class="container hero-grid">
+          <div class="hero-text-block">
+            <div class="hero-pill-badge">
+              <span class="sparkle">✦</span>
+              ALTA PERFUMERÍA ACCESIBLE • 5 ML (+70 ATOMIZACIONES)
+            </div>
+            <h1 class="hero-title">
+              Tu aroma es tu estatus.<br>
+              <span class="text-gold-gradient">No huelas como todos.</span>
+            </h1>
+            <p class="hero-description">
+              Extraemos la esencia pura de los perfumes más cotizados del mundo en atomizadores metálicos recargables con grabado láser personalizado gratuito. Tu firma personal en un accesorio de bolsillo de grado aeroespacial.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#catalogoDecants" class="btn btn-gold">
+                <span>EXPLORAR DECANTS DE ÉLITE</span>
+                <span class="btn-arrow">→</span>
+              </a>
+              <a href="#laserCustomizer" class="btn btn-outline-gold">
+                <span>PERSONALIZADOR LÁSER 3D</span>
+                <span class="btn-icon">⚡</span>
+              </a>
+            </div>
+            <div class="hero-proof-badges">
+              <div class="proof-item">
+                <span class="proof-icon">💎</span>
+                <div>
+                  <strong>100% Jugo Original</strong>
+                  <small>Extracción directa de botella oficial</small>
+                </div>
+              </div>
+              <div class="proof-item">
+                <span class="proof-icon">✨</span>
+                <div>
+                  <strong>Grabado Láser Sin Costo</strong>
+                  <small>Tu nombre, iniciales o logotipo</small>
+                </div>
+              </div>
+              <div class="proof-item">
+                <span class="proof-icon">📍</span>
+                <div>
+                  <strong>Local en Tepic</strong>
+                  <small>Entregas express el mismo día</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual-block">
+            <div class="hero-image-card">
+              <img src="./aura-atomizer.jpg" alt="Atomizador metálico de lujo 5ml Aura Noir con grabado láser" class="hero-primary-img">
+              <div class="hero-floating-card">
+                <div class="floating-inner">
+                  <span class="badge-mini">Presentación Estelar</span>
+                  <h4>5 ml Pocket Luxury</h4>
+                  <div class="sprays-meter">
+                    <div class="meter-bar" style="width: 100%;"></div>
+                  </div>
+                  <div class="meter-labels">
+                    <span>+70 Sprays Dosificados</span>
+                    <span class="text-gold">Grado Aeroespacial</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VALUE PILLARS (NEUROMARKETING) -->
+      <section class="pillars-section">
+        <div class="container pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon">🧪</div>
+            <h3>Cero Diluciones. 100% Auténtico</h3>
+            <p>Decantamos bajo pedido directo de los frascos originales con jeringas de grado médico selladas. Pureza garantizada.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">⚡</div>
+            <h3>Cuerpo Metálico Blindado</h3>
+            <p>Olvídate del vidrio que se rompe. Nuestros cilindros de aleación resisten caídas, viajes y no gotean en tu bolsillo.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">✒️</div>
+            <h3>Grabado Láser de Precisión</h3>
+            <p>Personalizamos cada atomizador con rayo de fibra óptica. Letras indelebles que convierten tu decant en una joya única.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">🔄</div>
+            <h3>Recargable & Sostenible</h3>
+            <p>Cuando termines tu decant, puedes recargarlo con tu siguiente fragancia Aura Noir favorita una y otra vez.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================ -->
+      <!-- INTERACTIVE 3D LASER ENGRAVING STUDIO (SHOWPIECE) -->
+      <!-- ================================================ -->
+      <section class="laser-studio-section" id="laserCustomizer">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-tag">TECNOLOGÍA EN VIVO</span>
+            <h2 class="section-title">Estudio de Personalización Láser</h2>
+            <p class="section-subtitle">Visualiza en tiempo real cómo se grabará tu nombre o iniciales sobre el cilindro metálico con nuestro simulador de fibra óptica.</p>
+          </div>
+
+          <div class="studio-layout">
+            <!-- Left: Interactive Atomizer Mockup / Visualizer (Exact Real Physical Model) -->
+            <div class="studio-preview-col">
+              <div class="atomizer-stage">
+                <!-- Atmospheric Aerosol Mist Spray (matches real product photo) -->
+                <div class="atomizer-mist" id="atomizerMist"></div>
+
+                <!-- Laser beam effect overlay -->
+                <div class="laser-beam" id="laserBeam"></div>
+                <div class="spark-emitter" id="sparkEmitter"></div>
+
+                <!-- 3D Cylindrical Atomizer Assembly (Physical 5ml Pocket Model) -->
+                <div class="atomizer-cylinder" id="atomizerCylinder" data-color="noir">
+                  
+                  <!-- 1. Spray Actuator Nozzle (Pulsador Retráctil con Orificio de Latón/Oro) -->
+                  <div class="atomizer-actuator-nozzle" id="atomizerNozzle" title="Click para disparar spray">
+                    <div class="actuator-top-bevel"></div>
+                    <div class="spray-orifice-brass">
+                      <div class="orifice-pinhole"></div>
+                    </div>
+                  </div>
+
+                  <!-- 2. Collar / Cuello Superior con Anillo de Separación -->
+                  <div class="atomizer-collar">
+                    <div class="collar-inner-bevel"></div>
+                    <div class="collar-divider-ring"></div>
+                  </div>
+
+                  <!-- 3. Cuerpo Cilíndrico Principal (Barril de Precisión 5ml) -->
+                  <div class="atomizer-body">
+                    <div class="metallic-sheen"></div>
+                    
+                    <!-- Insignia Original AN AURA NOIR (Grabado Láser en Aluminio Puro) -->
+                    <div class="atomizer-brand-crest">
+                      <div class="crest-monogram">AN</div>
+                      <div class="crest-title-stacked">
+                        <span>AURA</span>
+                        <span>NOIR</span>
+                      </div>
+                    </div>
+
+                    <!-- Zona de Grabado Láser Personalizado para el Cliente -->
+                    <div class="laser-engraved-text-zone" id="engravedZone">
+                      <div class="engraved-text font-serif" id="engravedLiveText">ALEJANDRO G.</div>
+                      <div class="engraved-perfume-tag" id="engravedPerfumeTag">TOM FORD NOIR EXTREME</div>
+                    </div>
+                  </div>
+
+                  <!-- 4. Base Cilíndrica -->
+                  <div class="atomizer-base"></div>
+                </div>
+
+                <div class="atomizer-shadow"></div>
+
+                <div class="atomizer-stage-footer">
+                  <button type="button" class="btn-spray-test" id="btnSprayTest">
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.636 5.636l2.122 2.122m8.484 8.484l2.122 2.122M5.636 18.364l2.122-2.122m8.484-8.484l2.122-2.122"/>
+                    </svg>
+                    <span>Disparar Spray (+70 Sprays)</span>
+                  </button>
+                  <div class="specs-pill-under">
+                    <span>5 ML POCKET LUXURY // ALEACIÓN AEROESPACIAL</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Customizer Controls -->
+            <div class="studio-controls-col">
+              <div class="controls-card">
+                <h3>1. Elige el Acabado de tu Atomizador</h3>
+                <div class="color-options" id="atomizerColorPicker">
+                  <!-- Populated by JS -->
+                </div>
+
+                <h3>2. Tu Texto o Iniciales a Grabar (GRATIS)</h3>
+                <div class="input-group">
+                  <input type="text" id="inputLaserText" maxlength="18" placeholder="Escribe tu nombre o frase..." value="ALEJANDRO G.">
+                  <span class="char-count" id="charCount">12/18</span>
+                </div>
+
+                <h3>3. Tipografía del Grabado</h3>
+                <div class="font-options">
+                  <button class="font-btn active" data-font="font-serif">Cinzel Imperial</button>
+                  <button class="font-btn" data-font="font-sans">Modern Sans</button>
+                  <button class="font-btn" data-font="font-syne">Architectural</button>
+                </div>
+
+                <h3>4. Selecciona el Perfume para Llenar tu Atomizador</h3>
+                <select id="selectStudioPerfume" class="studio-select">
+                  <!-- Populated by JS -->
+                </select>
+
+                <div class="studio-summary-row">
+                  <div>
+                    <span class="summary-label">Total del Decant 5ml:</span>
+                    <h3 class="summary-price" id="studioPriceDisplay">$360 MXN</h3>
+                    <small class="text-gold">Grabado Láser: $0 MXN (Bonificado)</small>
+                  </div>
+                  <button class="btn btn-gold btn-large" id="btnAddToCartCustom">
+                    <span>GRABAR Y AGREGAR A LA BOLSA</span>
+                    <span>🛒</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATALOG SECTION WITH NEUROMARKETING FILTERS -->
+      <section class="catalog-section" id="catalogoDecants">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-tag">CURADURÍA OLFATIVA</span>
+            <h2 class="section-title">Colección de Decants de Élite</h2>
+            <p class="section-subtitle">Filtrados por ocasión de uso para garantizar que siempre proyectes el mensaje correcto.</p>
+          </div>
+
+          <!-- Occasion Filters -->
+          <div class="filter-bar" role="tablist">
+            <button class="filter-pill active" data-filter="all">Todas las Fragancias (8)</button>
+            <button class="filter-pill" data-filter="citas">🌙 Citas & Seducción</button>
+            <button class="filter-pill" data-filter="proyeccion">⚡ Modo Bestia / Estatus</button>
+            <button class="filter-pill" data-filter="clean">🫧 Clean Boy & Día</button>
+            <button class="filter-pill" data-filter="gourmand">🍯 Nicho Gourmand</button>
+          </div>
+
+          <!-- Fragrance Grid -->
+          <div class="products-grid" id="perfumesGrid">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- DISCOVERY SETS (GIFTING & UNBOXING) -->
+      <section class="discovery-section">
+        <div class="container">
+          <div class="discovery-card-banner">
+            <div class="discovery-img-col">
+              <img src="./aura-discovery-box-vip15.jpg?v=auranext" alt="Aura Noir Discovery Box Set de Lujo (3 x 5ml)" class="discovery-img">
+            </div>
+            <div class="discovery-info-col">
+              <span class="section-tag">UNBOXING DEFINITIVO • EDICIÓN VIP</span>
+
+              <h2>Aura Noir Monolith Set (3 x 5ml)</h2>
+
+              <p>
+                El cofre rígido magnético de exhibición. Incluye 3 atomizadores metálicos con grabado láser personalizado gratuito, 225+ atomizaciones totales y la exclusiva <strong>Tarjeta VIP Aura Noir con 15% de descuento</strong> para tu próxima compra en pedidos mayores a $500 MXN.
+              </p>
+              
+              <ul class="discovery-bullets">
+                <li>✦ 3 Fragancias nicho o diseñador en 5ml de alta densidad</li>
+                <li>✦ Cilindros metálicos herméticos en Negro, Oro Champagne y Plata</li>
+                <li>✦ Tarjeta física VIP AURA NOIR con 15% OFF (Compras mayores a $500 MXN)</li>
+                <li>✦ Grabado láser personalizado incluido en los 3 atomizadores</li>
+                <li>✦ Caja rígida para exhibición en tu tocador o buró</li>
+              </ul>
+
+              <div class="discovery-price-row">
+                <div class="price-box">
+                  <span class="old-price">$1,450 MXN</span>
+                  <span class="current-price">$1,190 MXN</span>
+                </div>
+                <button class="btn btn-gold" id="btnAddDiscoverySet">
+                  <span>ORDENAR COFRE VIP + TARJETA 15% OFF</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONCEPT STORE CROSS-PROMO (BRIDGING AURA NOIR -> VÉRTICE) -->
+      <section class="concept-bridge-section vertice-only" id="conceptStoreSec">
+        <div class="container">
+          <div class="concept-bridge-grid">
+            <div class="concept-copy-col">
+              <span class="section-tag">CONCEPT STORE // AURA NOIR x VÉRTICE</span>
+              <h2>El perfume adecuado en el outfit equivocado pierde su poder.</h2>
+              <p>
+                Un aroma de lujo exige un corte impecable. Por eso creamos <strong>VÉRTICE</strong>: prendas de algodón pesado (260 a 440 GSM) con estructura rígida y bordados de alta densidad diseñados para complementar tu presencia.
+              </p>
+              
+              <div class="cross-promo-callout">
+                <div class="callout-icon">🏷️</div>
+                <div class="callout-text">
+                  <strong>Combo Fit Oficial: Playera Heavyweight + Decant 5ml</strong>
+                  <span>Lleva cualquier decant con grabado láser de regalo + una prenda VÉRTICE y recibe <strong>-$200 MXN</strong> de descuento automático en tu bolsa.</span>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-top:1.2rem;">
+                <button class="btn btn-silver" id="btnGoToVerticeFromBridge">
+                  <span>CATÁLOGO VÉRTICE</span>
+                  <span>▲</span>
+                </button>
+                <button class="btn btn-gold" id="btnQuickAddTeeCombo">
+                  <span>AGREGAR COMBO PLAYERA + DECANT (-$200 MXN)</span>
+                  <span>🛍️</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="concept-visual-col">
+              <div class="concept-look-card">
+                <img src="./vertice-streetwear.jpg" alt="Vértice Streetwear Heavyweight Lookbook" class="concept-img">
+                <div class="concept-overlay">
+                  <span class="look-badge">The Signature Combo</span>
+                  <h4>Heavyweight Boxy Tee 280 GSM + Decant 5ml</h4>
+                  <p>Incluye grabado láser personalizado gratis y -$200 MXN de descuento.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS & TEPIC PROOF -->
+      <section class="social-proof-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-tag">COMUNIDAD EXCLUSIVA</span>
+            <h2 class="section-title">Lo que dicen en Tepic y México</h2>
+          </div>
+          <div class="reviews-grid">
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>"El grabado láser en el atomizador negro se ve de otro nivel. Lo saqué en una cena en Ciudad del Valle y todos me preguntaron qué era. 100% original el jugo."</p>
+              <div class="reviewer-meta">
+                <strong>Emiliano R.</strong>
+                <small>Tepic, Nayarit • Compró Creed Aventus 5ml</small>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p class="aura-only">"Pedí el cofre con 3 decants y me llegó al día siguiente aquí en Tepic. El grabado láser de mi nombre en los atomizadores se ve de primer nivel y los perfumes son 100% auténticos."</p>
+              <p class="vertice-only">"Pedí el cofre con 3 decants y me llegó al día siguiente aquí en Tepic. La tarjeta de descuento de VÉRTICE ya la usé para el hoodie de 440g y la tela está pesadísima."</p>
+              <div class="reviewer-meta">
+                <strong>Carlos Mendoza</strong>
+                <small>Tepic, Nayarit • Cliente VIP</small>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>"Los 5ml rinden muchísimo más de lo que pensé. Llevo 3 semanas con Imagination y no se gasta. El atomizador metálico no se tira para nada en la mochila."</p>
+              <div class="reviewer-meta">
+                <strong>Mateo G.</strong>
+                <small>Guadalajara, Jal. • Envío Nacional</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 2: VÉRTICE STOREFRONT (STREETWEAR) -->
+    <!-- ========================================== -->
+    <div id="viewVertice" class="store-view vertice-only">
+      
+      <!-- HERO VÉRTICE -->
+      <section class="hero-section hero-vertice">
+        <div class="vertice-hero-bg"></div>
+        <div class="container hero-grid">
+          <div class="hero-text-block">
+            <div class="vertice-tag-badge">
+              <span>DROP 01 // 50 PIEZAS POR CORTE // HEAVYWEIGHT ARCHITECTURE</span>
+            </div>
+            <h1 class="vertice-hero-title">
+              ELEVATE YOUR<br>
+              <span class="text-silver-gradient">STANDARD.</span>
+            </h1>
+            <p class="vertice-hero-desc">
+              Diseñado para hombres que no negocian la caída de una prenda. Algodón peinado de 260 a 440 GSM, bordados de 30,000 puntadas en hilo plata mate y siluetas con estructura pura. Hecho en México con corte contemporáneo.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#verticeDropGrid" class="btn btn-silver">
+                <span>INGRESAR AL DROP 01</span>
+                <span>▲</span>
+              </a>
+              <button class="btn btn-outline-silver" id="btnBackToAuraFromHero">
+                <span>VOLVER A AURA NOIR DECANTS</span>
+                <span>⚜️</span>
+              </button>
+            </div>
+            <div class="drop-countdown-bar">
+              <span class="pulse-indicator"></span>
+              <strong>STOCK DROP 01 EN VIVO:</strong> Quedan 23 de 50 piezas confeccionadas en este tiraje.
+            </div>
+          </div>
+
+          <div class="hero-visual-block">
+            <div class="vertice-editorial-card">
+              <img src="./vertice-streetwear.jpg" alt="VÉRTICE Luxury Streetwear Hoodie" class="vertice-hero-img">
+              <div class="vertice-corner-tag">VERTICE / 01</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- THE STANDARD (MATERIAL ENGINEERING) -->
+      <section class="vertice-blueprint-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-tag silver">INGENIERÍA TEXTIL</span>
+            <h2 class="section-title text-bone">The Standard Manifesto</h2>
+            <p class="section-subtitle">Por qué nuestras prendas tienen una presencia y peso incomparables.</p>
+          </div>
+
+          <div class="blueprint-grid">
+            <div class="blueprint-card">
+              <span class="bp-number">01</span>
+              <h3>260 - 440 GSM</h3>
+              <p>Gramaje ultra denso. La prenda no se pega al cuerpo; cae recta con arquitectura y silueta imponente.</p>
+            </div>
+            <div class="blueprint-card">
+              <span class="bp-number">02</span>
+              <h3>Bordados HD de Precisión</h3>
+              <p>Bordado industrial computarizado con más de 30,000 puntadas que no se cuartean ni se borran con las lavadas.</p>
+            </div>
+            <div class="blueprint-card">
+              <span class="bp-number">03</span>
+              <h3>Cero Sobreproducción</h3>
+              <p>Trabajamos bajo tirajes limitados (On-Demand). Cada prenda cuenta con etiqueta seriada para garantizar autenticidad.</p>
+            </div>
+            <div class="blueprint-card">
+              <span class="bp-number">04</span>
+              <h3>Aroma de Cortesía</h3>
+              <p>Cada paquete VÉRTICE se aromatiza con notas de nicho y viene acompañado de muestras exclusivas de Aura Noir.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONCEPT STORE APPAREL SHOWCASE (IN-HOUSE & CURATED ARCHIVE) -->
+      <section class="vertice-catalog-section" id="verticeDropGrid">
+        <div class="container">
+          
+          <!-- 1. VÉRTICE IN-HOUSE FLAGSHIP LINE -->
+          <div class="inhouse-collection-block" id="verticeInHouseBlock">
+            <div class="collection-header-row">
+              <div class="collection-title-wrap">
+                <span class="section-tag silver">COLECCIÓN DE LA CASA // HEAVYWEIGHT 440 GSM</span>
+                <h2 class="section-title text-bone">VÉRTICE // DROP 01</h2>
+                <p class="section-subtitle">Confección arquitectónica de nuestra firma propia. Siluetas estructuradas, cortes boxy y bordados de 30,000 puntadas.</p>
+              </div>
+              <div class="inhouse-status-pill">
+                <span class="pulse-indicator"></span>
+                <span>TIRAJE LIMITADO // EDICIÓN NUMERADA</span>
+              </div>
+            </div>
+
+            <div class="vertice-grid" id="verticeInHouseGrid">
+              <!-- Rendered by JS: Only VÉRTICE In-House pieces -->
+            </div>
+          </div>
+
+          <!-- CONCEPT STORE CURATION DIVIDER -->
+          <div class="concept-store-divider">
+            <div class="divider-line"></div>
+            <div class="divider-badge">
+              <span>THE CURATED ARCHIVE // MARCAS INVITADAS</span>
+            </div>
+            <div class="divider-line"></div>
+          </div>
+
+          <!-- 2. GUEST BRANDS & CURATED STREETWEAR -->
+          <div class="guest-brands-block" id="guestBrandsBlock">
+            <div class="collection-header-row">
+              <div class="collection-title-wrap">
+                <span class="section-tag">CURADURÍA DE MODA // GUEST BRANDS</span>
+                <h2 class="section-title text-bone">Marcas Invitadas & Co-Labs</h2>
+                <p class="section-subtitle">Firmas de streetwear, archivo y denim seleccionadas por VÉRTICE Concept Store para complementar tu rotación.</p>
+              </div>
+
+              <!-- Brand Filter Pill Selector for Guest Brands -->
+              <div class="brand-filter-bar" id="apparelBrandFilterBar">
+                <!-- Populated by JS: Todas las Marcas, Obsidian Archive, Atelier Nayarit, etc. -->
+              </div>
+            </div>
+
+            <div class="vertice-grid" id="verticeGuestGrid">
+              <!-- Rendered by JS: Guest brands items -->
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VÉRTICE CROSS-PERFUME BANNER -->
+      <section class="vertice-perfume-invite">
+        <div class="container">
+          <div class="invite-box">
+            <div class="invite-content">
+              <span class="section-tag">EL DUETO PERFECTO</span>
+              <h2>¿Ya tienes tu aroma insignia para este fit?</h2>
+              <p>Aura Noir es el hub oficial de fragancias de lujo para vestir con VÉRTICE. Lleva tu decant con grabado láser personalizado y recibe $200 MXN de descuento instantáneo en tu bolsa.</p>
+              <button class="btn btn-gold" id="btnSwitchToAuraFromVerticeBanner">
+                <span>SELECCIONAR TU FRAGANCIA EN AURA NOIR</span>
+                <span>⚜️</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- ============================================== -->
+  <!-- MODAL: OLFACTORY QUIZ (ENCUENTRA TU PERFUME) -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="quizModal">
+    <div class="modal-card modal-quiz">
+      <button class="modal-close" id="btnCloseQuiz">&times;</button>
+      <div id="quizContainer">
+        <!-- Dynamic Quiz Steps rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: PRODUCT DETAIL QUICK VIEW -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="productModal">
+    <div class="modal-card modal-product-view">
+      <button class="modal-close" id="btnCloseProductModal">&times;</button>
+      <div class="modal-product-layout" id="modalProductContent">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- DRAWER: SHOPPING CART SLIDE-OUT -->
+  <!-- ============================================== -->
+  <div class="drawer-backdrop" id="cartDrawerBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Bolsa de Compras">
+    <div class="drawer-header">
+      <div class="drawer-title">
+        <h3>Tu Bolsa de Compra</h3>
+        <span class="cart-subtitle" id="cartSubtitleSummary">0 artículos</span>
+      </div>
+      <button class="drawer-close" id="btnCloseCart">&times;</button>
+    </div>
+
+    <!-- Free Shipping / Cross-offer Meter -->
+    <div class="cart-perk-bar">
+      <div class="perk-text" id="cartPerkText">Agrega $600 MXN para ENVÍO EXPRESS GRATIS en Tepic</div>
+      <div class="perk-progress">
+        <div class="perk-fill" id="cartPerkFill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Bundle Savings Notification Banner -->
+    <div class="bundle-banner vertice-only hidden" id="bundleBanner">
+      <span>🎉 <strong>¡Combo Élite Activado!</strong> Descuento cruzado de -$200 MXN aplicado por combinar Decant + Prenda VÉRTICE.</span>
+    </div>
+
+    <!-- Cart Items List -->
+    <div class="cart-items-list" id="cartItemsList">
+      <!-- Empty state or items rendered by JS -->
+    </div>
+
+    <!-- Drawer Footer / Pricing -->
+    <div class="drawer-footer">
+      <div class="coupon-box">
+        <input type="text" id="inputPromoCode" placeholder="Código (ej. AURA150, TEPICVIP)">
+        <button class="btn btn-outline-gold" id="btnApplyPromo">APLICAR</button>
+      </div>
+      <div class="discount-applied-tag hidden" id="discountTag">
+        <span>Cupón aplicado con éxito</span>
+        <strong id="discountAmount">-$0 MXN</strong>
+      </div>
+
+      <div class="price-breakdown">
+        <div class="price-row">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">$0 MXN</span>
+        </div>
+        <div class="price-row text-gold hidden" id="rowBundleDiscount">
+          <span>Descuento Combo Fit</span>
+          <span id="cartBundleDiscount">-$200 MXN</span>
+        </div>
+        <div class="price-row total-row">
+          <span>Total Estimado</span>
+          <span class="total-highlight" id="cartTotal">$0 MXN</span>
+        </div>
+      </div>
+
+      <button class="btn btn-gold btn-large btn-block" id="btnGoToCheckout">
+        <span>PROCEDER AL CHECKOUT</span>
+        <span>🔒</span>
+      </button>
+
+      <div class="secure-footer-badges">
+        <span>🔒 Pago Seguro</span>
+        <span>📍 Entrega Tepic o Envíos Nacionales</span>
+        <span>💬 Soporte WhatsApp</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============================================== -->
+  <!-- MODAL: CHECKOUT SIMULATOR -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="checkoutModal">
+    <div class="modal-card modal-checkout">
+      <button class="modal-close" id="btnCloseCheckout">&times;</button>
+      <div class="checkout-header">
+        <img src="./logo-aura-noir.png" alt="Aura Noir" class="checkout-brand-logo">
+        <h2>Finalizar Pedido Oficial</h2>
+        <p>Completa tus datos para agendar tu entrega en Tepic o envío nacional asegurado.</p>
+      </div>
+
+      <form class="checkout-form" id="checkoutForm">
+        <div class="form-section">
+          <h4>1. Método de Entrega</h4>
+          <div class="delivery-options">
+            <label class="delivery-card">
+              <input type="radio" name="deliveryMethod" value="tepic-express" checked>
+              <div class="delivery-info">
+                <strong>📍 Entrega Express en Tepic (Mismo Día / 24 hrs)</strong>
+                <small>A domicilio en Tepic o Xalisco ($50 MXN o GRATIS en pedidos > $600)</small>
+              </div>
+            </label>
+            <label class="delivery-card">
+              <input type="radio" name="deliveryMethod" value="tepic-pickup">
+              <div class="delivery-info">
+                <strong>🏢 Pick-up Exclusivo (Gratis)</strong>
+                <small>Puntos seguros: Starbucks Plaza Fórum o Ciudad del Valle</small>
+              </div>
+            </label>
+            <label class="delivery-card">
+              <input type="radio" name="deliveryMethod" value="national">
+              <div class="delivery-info">
+                <strong>📦 Envío Nacional México (DHL / Estafeta)</strong>
+                <small>Entrega asegurada de 2 a 4 días hábiles ($149 MXN)</small>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h4>2. Datos de Contacto y Destinatario</h4>
+          <div class="form-grid-2">
+            <input type="text" id="custName" placeholder="Nombre completo" required>
+            <input type="tel" id="custPhone" placeholder="Teléfono WhatsApp (ej. 311 123 4567)" required>
+          </div>
+          <div class="form-grid-2">
+            <input type="email" id="custEmail" placeholder="Correo electrónico" required>
+            <input type="text" id="custCity" placeholder="Ciudad (ej. Tepic, Nayarit)" value="Tepic, Nayarit" required>
+          </div>
+          <input type="text" id="custAddress" placeholder="Dirección completa (Calle, Número, Colonia, C.P.)" required>
+        </div>
+
+        <div class="form-section">
+          <h4>3. Método de Pago</h4>
+          <div class="payment-methods">
+            <label class="pay-option">
+              <input type="radio" name="paymentOption" value="mercadopago" checked>
+              <span>💳 Tarjetas Débito / Crédito / Mercado Pago</span>
+            </label>
+            <label class="pay-option">
+              <input type="radio" name="paymentOption" value="spei">
+              <span>⚡ Transferencia SPEI Inmediata</span>
+            </label>
+            <label class="pay-option">
+              <input type="radio" name="paymentOption" value="cash">
+              <span>💵 Efectivo contra-entrega (Solo en Tepic)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="checkout-order-summary">
+          <div class="summary-line">
+            <span>Total a Pagar:</span>
+            <strong id="checkoutFinalTotal">$0 MXN</strong>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-gold btn-large btn-block" id="btnConfirmOrder">
+          <span>CONFIRMAR Y CREAR ORDEN</span>
+          <span>✓</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ORDER SUCCESS CELEBRATION MODAL -->
+  <div class="modal-backdrop" id="orderSuccessModal">
+    <div class="modal-card modal-success text-center">
+      <div class="success-icon">⚜️</div>
+      <h2 class="text-gold">¡Orden Recibida con Éxito!</h2>
+      <p id="successMessageDetail">Tu pedido ha sido registrado en el sistema de Aura Noir.</p>
+      
+      <div class="success-ticket-box" id="successTicketBox">
+        <!-- Rendered order summary ticket -->
+      </div>
+
+      <div class="success-actions">
+        <a href="#" class="btn btn-whatsapp" id="btnWhatsappShare" target="_blank">
+          <span>NOTIFICAR POR WHATSAPP AHORA</span>
+          <span>💬</span>
+        </a>
+        <button class="btn btn-outline-gold" id="btnCloseSuccessModal">Cerrar y Continuar Explorando</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: BACK OFFICE SECURITY AUTH (PIN MAESTRO) -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="adminAuthModal">
+    <div class="modal-card modal-auth" style="max-width: 420px; text-align: center; padding: 2.5rem 2rem; background:#0d0f13; border: 1px solid rgba(212,175,55,0.4); box-shadow: 0 25px 70px rgba(0,0,0,0.95), 0 0 35px rgba(212,175,55,0.15);">
+      <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔒</div>
+      <span class="section-tag" style="font-size: 0.7rem; letter-spacing: 0.18em;">ACCESO PRIVADO • CONCIERGE</span>
+      <h3 style="font-size: 1.45rem; margin: 0.4rem 0 0.8rem; font-family: var(--font-serif);" class="text-gold-gradient">Aura Noir Back Office</h3>
+      <p style="font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; line-height: 1.5;">
+        Introduce tu PIN maestro para gestionar precios, inventario, cupones y el lanzamiento de VÉRTICE.
+      </p>
+
+      <form id="formAdminAuth">
+        <div style="margin-bottom: 1.2rem;">
+          <input type="password" id="inputAdminPin" placeholder="PIN Maestro (def: 2026)" maxlength="12"
+                 style="width: 100%; text-align: center; font-size: 1.3rem; letter-spacing: 0.25em; padding: 0.75rem 1rem; background: #000; border: 1px solid var(--gold-border); border-radius: 6px; color: #fff;" autocomplete="off" autofocus required />
+          <div id="adminAuthError" style="color: #ef4444; font-size: 0.78rem; margin-top: 0.6rem; display: none;">PIN incorrecto. Intenta de nuevo.</div>
+        </div>
+        <div style="display: flex; gap: 0.6rem;">
+          <button type="button" class="btn btn-outline-silver" id="btnCancelAdminAuth" style="flex: 1;">Cancelar</button>
+          <button type="submit" class="btn btn-gold" style="flex: 2;">Desbloquear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: BACK OFFICE / ADMIN CONTROL PANEL -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="adminModal">
+    <div class="modal-card modal-admin">
+      <div class="admin-header">
+        <div class="admin-title-wrap">
+          <span class="admin-badge">CONTROL PANEL INTERACTIVO</span>
+          <h2>Back Office • Aura Noir & Concept Store</h2>
+          <p>Edita en tiempo real precios, inventario, marcas de ropa, promociones y cupones.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.8rem; flex-wrap:wrap;">
+          <button type="button" class="btn btn-gold btn-sm" id="btnLaunchVisualEditor" style="box-shadow: 0 0 16px rgba(212,175,55,0.3); font-weight:700;">
+            <span>✏️ Activar Editor Visual en Vivo</span>
+          </button>
+          <button class="modal-close" id="btnCloseAdmin">&times;</button>
+        </div>
+      </div>
+
+      <!-- LAUNCH MODE TOGGLE BAR -->
+      <div class="admin-launch-mode-bar" id="adminLaunchModeBar">
+        <div class="launch-mode-content">
+          <div class="launch-mode-icon">🚀</div>
+          <div>
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <strong style="font-size:0.85rem; letter-spacing:0.05em; color:#fff;">MODO PÚBLICO:</strong>
+              <span id="adminVerticeStatusText" style="color: #10b981; font-weight: 700; font-size:0.85rem;">SOLO AURA NOIR (Perfumería)</span>
+            </div>
+            <p style="margin: 0.25rem 0 0; font-size: 0.78rem; color: #888;">
+              VÉRTICE Streetwear se mantiene oculto a los clientes para no confundir mientras se desarrolla la mercancía.
+            </p>
+          </div>
+        </div>
+        <div class="launch-mode-toggle-action" style="display:flex; align-items:center; gap:0.8rem;">
+          <button type="button" class="btn btn-sm btn-outline-gold" id="btnToggleVerticeAction" style="font-size:0.75rem; padding:0.4rem 0.8rem;">
+            Desactivar VÉRTICE
+          </button>
+          <label class="switch-toggle" title="Activar/Desactivar VÉRTICE en la web">
+            <input type="checkbox" id="adminToggleVertice">
+            <span class="switch-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Admin Navigation Tabs -->
+      <div class="admin-tabs" role="tablist">
+        <button class="admin-tab active" data-tab="tab-perfumes">⚜️ Decants & Perfumes</button>
+        <button class="admin-tab" data-tab="tab-apparel">👕 Ropa & Marcas</button>
+        <button class="admin-tab" data-tab="tab-promos">🏷️ Promociones & Envíos</button>
+        <button class="admin-tab" data-tab="tab-sync">💾 Guardar & Exportar</button>
+      </div>
+
+      <!-- TAB 1: PERFUMES -->
+      <div class="admin-tab-pane active" id="tab-perfumes">
+        <div class="admin-pane-actions">
+          <h3 id="adminPerfumesCountTag">Catálogo de Decants</h3>
+          <button class="btn btn-gold btn-sm" id="btnAdminAddPerfume">+ Agregar Nuevo Decant</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Foto</th>
+                <th>Fragancia</th>
+                <th>Marca</th>
+                <th>Precio 5ml</th>
+                <th>Botella Oficial</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="adminPerfumesTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 2: APPAREL & BRANDS -->
+      <div class="admin-tab-pane" id="tab-apparel">
+        <div class="admin-pane-actions">
+          <div>
+            <h3 id="adminApparelCountTag">Prendas y Marcas</h3>
+            <small style="color:var(--text-muted);">Puedes asignar cualquier marca existente o escribir una nueva al agregar.</small>
+          </div>
+          <button class="btn btn-silver btn-sm" id="btnAdminAddApparel">+ Agregar Nueva Prenda</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Foto</th>
+                <th>Prenda</th>
+                <th>Marca</th>
+                <th>Precio MXN</th>
+                <th>Stock</th>
+                <th>Tallas</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="adminApparelTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3: PROMOTIONS & SHIPPING -->
+      <div class="admin-tab-pane" id="tab-promos">
+        <div class="admin-grid-2">
+          <div class="admin-card-box">
+            <h4>Reglas de Promociones & Envíos</h4>
+            <div class="admin-form-group">
+              <label>Descuento Combo Cruzado (Decant + Prenda):</label>
+              <div class="input-prefix-box">
+                <span>$</span>
+                <input type="number" id="inputSettingComboDiscount" value="200">
+                <span>MXN</span>
+              </div>
+              <small>Se resta automáticamente en la bolsa al tener al menos 1 perfume y 1 prenda.</small>
+            </div>
+            <div class="admin-form-group">
+              <label>Mínimo de Compra para Envío Gratis en Tepic:</label>
+              <div class="input-prefix-box">
+                <span>$</span>
+                <input type="number" id="inputSettingFreeShipping" value="600">
+                <span>MXN</span>
+              </div>
+              <small>Pedidos locales iguales o mayores tienen entrega express a $0 MXN.</small>
+            </div>
+            <div class="admin-form-group">
+              <label>Tarifa Envío Express Tepic (pedidos menores al mínimo):</label>
+              <div class="input-prefix-box">
+                <span>$</span>
+                <input type="number" id="inputSettingTepicShipping" value="50">
+                <span>MXN</span>
+              </div>
+            </div>
+            <div class="admin-form-group">
+              <label>Tarifa Envío Nacional México (DHL / Estafeta):</label>
+              <div class="input-prefix-box">
+                <span>$</span>
+                <input type="number" id="inputSettingNationalShipping" value="149">
+                <span>MXN</span>
+              </div>
+            </div>
+            <button class="btn btn-gold btn-sm" id="btnSavePromoSettings">Guardar Reglas</button>
+          </div>
+
+          <div class="admin-card-box">
+            <div class="admin-pane-actions" style="margin-bottom:0.75rem;">
+              <h4>Cupones de Descuento Activos</h4>
+              <button class="btn btn-outline-gold btn-sm" id="btnAdminAddCoupon">+ Nuevo Cupón</button>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Código</th>
+                    <th>Descuento</th>
+                    <th>Descripción</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="adminCouponsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: SYNC & EXPORT -->
+      <div class="admin-tab-pane" id="tab-sync">
+        <div class="sync-banner-card">
+          <div class="sync-icon">⚡</div>
+          <div>
+            <h3>Persistencia en Tiempo Real (Local & Código)</h3>
+            <p>Cualquier cambio de precios, artículos o marcas que realices aquí se guarda al instante en tu navegador (`localStorage`) y se ve inmediatamente en la tienda sin recargar.</p>
+          </div>
+        </div>
+
+        <div class="sync-actions-grid">
+          <div class="sync-action-box">
+            <h4>📥 Exportar a Código Permanente</h4>
+            <p>Descarga un archivo <code>data.js</code> con todos tus productos, marcas y promociones actualizadas. Solo reemplazas el archivo en tu proyecto y los cambios quedarán guardados para siempre en el código fuente.</p>
+            <button class="btn btn-gold btn-block" id="btnExportDataJs">Descargar data.js Actualizado</button>
+          </div>
+
+          <div class="sync-action-box">
+            <h4>🔄 Restaurar Valores por Defecto</h4>
+            <p>Si deseas reiniciar todo el catálogo a los datos originales de demostración, puedes restaurarlos con un solo clic.</p>
+            <button class="btn btn-outline-silver btn-block" id="btnResetToDefaults">Restablecer Datos de Fábrica</button>
+          </div>
+
+          <div class="sync-action-box">
+            <h4>🔐 Cambiar PIN Maestro de Acceso</h4>
+            <p>Configura tu clave personal para acceder a este panel. El PIN actual predeterminado es <strong>2026</strong>.</p>
+            <div style="display:flex; gap:0.5rem; margin-top:0.8rem; align-items:center;">
+              <input type="password" id="inputNewAdminPin" placeholder="Nuevo PIN" maxlength="12" style="background:#000; border:1px solid #444; border-radius:4px; padding:0.4rem 0.8rem; color:#fff; width:130px;" />
+              <button type="button" class="btn btn-outline-gold btn-sm" id="btnChangeAdminPin">Guardar PIN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SUB-MODAL: ITEM FORM (ADD / EDIT DIALOG) -->
+  <div class="modal-backdrop" id="adminItemFormModal">
+    <div class="modal-card modal-item-form">
+      <button class="modal-close" id="btnCloseItemForm">&times;</button>
+      <h3 id="adminFormTitle">Editar Artículo</h3>
+      <form id="adminItemForm">
+        <div id="adminFormFields"></div>
+        <div class="admin-form-actions">
+          <button type="submit" class="btn btn-gold">Guardar Cambios</button>
+          <button type="button" class="btn btn-outline-silver" id="btnCancelItemForm">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col brand-col">
+        <img src="./logo-aura-noir.png" alt="Aura Noir" class="footer-logo">
+        <p>Hub de alta perfumería en decants y moda urbana de vanguardia. Diseñado para proyectar estatus, exclusividad y presencia.</p>
+        <div class="location-badge">📍 Tepic, Nayarit • Envíos a todo México</div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Aura Noir Decants</h4>
+        <ul>
+          <li><a href="#catalogoDecants">Decants de 5 ml</a></li>
+          <li><a href="#laserCustomizer">Grabado Láser Personalizado</a></li>
+          <li><a href="#" id="footerLinkQuiz">Test Olfativo</a></li>
+          <li><a href="#catalogoDecants">Garantía de Autenticidad</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col vertice-only">
+        <h4>VÉRTICE Streetwear</h4>
+        <ul>
+          <li><a href="#" id="footerLinkVertice">Drop 01 // Heavyweight</a></li>
+          <li><a href="#" id="footerLinkBlueprint">The Standard Manifesto</a></li>
+          <li><a href="#conceptStoreSec">Concept Store Combo</a></li>
+          <li><a href="#">Tallas y Cuidado</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col aura-only">
+        <h4>Compromiso de Pureza</h4>
+        <ul>
+          <li>Fragancias 100% Originales</li>
+          <li>Extracción Directa sin Diluir</li>
+          <li>Atomizadores de Aluminio Herméticos</li>
+          <li>Garantía de Satisfacción Total</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Atención al Cliente</h4>
+        <ul>
+          <li>Entregas Express en Tepic (Mismo Día)</li>
+          <li>Pick-up Ciudad del Valle / Plaza Fórum</li>
+          <li>WhatsApp Directo: +52 (311) 000-0000</li>
+          <li>Horario: Lunes a Sábado 10:00 - 20:00 hrs</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container bottom-flex">
+        <p class="aura-only"><span class="secret-admin-trigger">©</span> 2026 AURA NOIR. Decants de Perfumes de Lujo y Nicho. Tepic, Nayarit. Todos los derechos reservados.</p>
+        <p class="vertice-only"><span class="secret-admin-trigger">©</span> 2026 AURA NOIR & VÉRTICE. Todos los derechos reservados. Hecho para hombres que marcan su propio estándar.</p>
+        <div class="payment-icons-row">
+          <span>VISA</span>
+          <span>MASTERCARD</span>
+          <span>AMEX</span>
+          <span>MERCADO PAGO</span>
+          <span>SPEI</span>
+          <span>EFECTIVO TEPIC</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
