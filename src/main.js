@@ -167,6 +167,7 @@ const els = {
 
   // Hero & Bridge CTAs
   btnGoToVerticeFromBridge: document.getElementById('btnGoToVerticeFromBridge'),
+  btnQuickAddTeeCombo: document.getElementById('btnQuickAddTeeCombo'),
   btnBackToAuraFromHero: document.getElementById('btnBackToAuraFromHero'),
   btnSwitchToAuraFromVerticeBanner: document.getElementById('btnSwitchToAuraFromVerticeBanner'),
   btnAddDiscoverySet: document.getElementById('btnAddDiscoverySet'),
@@ -2137,24 +2138,63 @@ function setupGlobalEvents() {
   els.btnSwitchToAuraFromVerticeBanner.onclick = () => switchStore('aura');
   if (els.footerLinkVertice) els.footerLinkVertice.onclick = (e) => { e.preventDefault(); switchStore('vertice'); };
 
+  // Quick Add Tee Combo (Only when Vértice is active)
+  if (els.btnQuickAddTeeCombo) {
+    els.btnQuickAddTeeCombo.onclick = () => {
+      sounds.playSpray();
+      const topTee = state.apparel.find(a => a.category === 'in-house') || state.apparel[0];
+      const topPerfume = state.perfumes[0];
+      const comboDiscount = state.promotions.comboDiscount || 200;
+
+      addToCart({
+        id: `vertice-${topTee.id}-${Date.now()}`,
+        refId: topTee.id,
+        type: 'vertice',
+        name: `${topTee.name} (${topTee.brand || 'VÉRTICE'})`,
+        size: topTee.sizes[1] || topTee.sizes[0],
+        price: topTee.price,
+        image: topTee.image
+      });
+
+      addToCart({
+        id: `decant-${topPerfume.id}-${Date.now()}`,
+        refId: topPerfume.id,
+        type: 'decant',
+        name: `${topPerfume.name} (5ml)`,
+        brand: topPerfume.brand,
+        price: topPerfume.price5ml,
+        image: topPerfume.image,
+        engraving: { text: 'AURA NOIR', color: 'noir', font: 'font-serif' }
+      });
+
+      showToast(`¡Combo Playera + Decant agregado con -$${comboDiscount} MXN de descuento!`, 'success');
+      openCart();
+    };
+  }
+
   // Discovery Set Button
   els.btnAddDiscoverySet.onclick = () => {
     sounds.playSpray();
     const set = DISCOVERY_SETS[0];
+    const verticeActive = isVerticeEnabled();
     addToCart({
       id: `set-${set.id}-${Date.now()}`,
       refId: set.id,
       type: 'discovery',
-      name: set.name,
+      name: verticeActive 
+        ? 'Aura Noir Monolith Set (3x5ml) + Tarjeta Regalo VÉRTICE' 
+        : 'Aura Noir Monolith Set (3x5ml) Cofre de Lujo',
       price: set.price,
-      image: set.image,
+      image: verticeActive ? '/aura-discovery-box.jpg' : '/aura-discovery-box-pure.jpg',
       engraving: {
         text: 'MONOLITH VIP',
         color: 'noir',
         font: 'font-serif'
       }
     });
-    showToast('Aura Noir Monolith Set (3x5ml) agregado a tu bolsa', 'gold');
+    showToast(verticeActive 
+      ? 'Cofre Monolith + Tarjeta VIP Vértice agregados a tu bolsa' 
+      : 'Cofre Monolith (3x5ml) de Lujo agregado a tu bolsa', 'gold');
     openCart();
   };
 
