@@ -297,53 +297,22 @@ function showToast(message, type = 'gold') {
    STORE SWITCHING ENGINE (AURA NOIR <-> VÉRTICE)
    =================================================================== */
 function switchStore(store) {
-  sounds.playClick();
-  state.currentStore = store;
-
-  if (store === 'aura') {
-    document.body.classList.remove('theme-vertice');
-    document.body.classList.add('theme-aura');
-    els.btnSwitchAura.classList.add('active');
-    els.btnSwitchAura.setAttribute('aria-selected', 'true');
-    els.btnSwitchVertice.classList.remove('active');
-    els.btnSwitchVertice.setAttribute('aria-selected', 'false');
-
-    els.viewAura.classList.add('active');
-    els.viewVertice.classList.remove('active');
-
-    els.headerLogoAura.classList.remove('hidden');
-    els.headerLogoVertice.classList.add('hidden');
-  } else {
-    document.body.classList.remove('theme-aura');
-    document.body.classList.add('theme-vertice');
-    els.btnSwitchVertice.classList.add('active');
-    els.btnSwitchVertice.setAttribute('aria-selected', 'true');
-    els.btnSwitchAura.classList.remove('active');
-    els.btnSwitchAura.setAttribute('aria-selected', 'false');
-
-    els.viewVertice.classList.add('active');
-    els.viewAura.classList.remove('active');
-
-    els.headerLogoVertice.classList.remove('hidden');
-    els.headerLogoAura.classList.add('hidden');
-  }
-
+function switchStore(store) {
+  state.currentStore = 'aura';
+  document.body.classList.remove('theme-vertice');
+  document.body.classList.add('theme-aura');
+  if (els.viewAura) els.viewAura.classList.add('active');
   renderDynamicNav();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function renderDynamicNav() {
-  if (state.currentStore === 'aura') {
+  if (els.dynamicNavList) {
     els.dynamicNavList.innerHTML = `
-      <li class="nav-item"><a href="#catalogoDecants">Decants 5ml</a></li>
+      <li class="nav-item"><a href="#catalogoDecants">Colección 5ml</a></li>
       <li class="nav-item"><a href="#laserCustomizer">Estudio Láser</a></li>
-      <li class="nav-item"><a href="#conceptStoreSec">Concept Store</a></li>
-    `;
-  } else {
-    els.dynamicNavList.innerHTML = `
-      <li class="nav-item"><a href="#verticeInHouseBlock">Drop 01</a></li>
-      <li class="nav-item"><a href="#guestBrandsBlock">Marcas Invitadas</a></li>
-      <li class="nav-item"><a href="#appMain">The Standard</a></li>
+      <li class="nav-item"><a href="#discoveryBoxSection">Discovery Set</a></li>
+      <li class="nav-item"><a href="#socialProof">Opiniones</a></li>
     `;
   }
 }
@@ -882,8 +851,6 @@ function renderQuizResult() {
   sounds.playSuccess();
   const q1 = state.quiz.answers[1];
   let matchedPerfume = state.perfumes.find(p => p.category === (q1?.category || 'citas')) || state.perfumes[0];
-  const matchedVertice = state.apparel.find(v => v.id === (state.quiz.answers[2]?.verticePair || 'v-hoodie-structural')) || state.apparel[0];
-  const comboDiscount = state.promotions.comboDiscount || 200;
 
   els.quizContainer.innerHTML = `
     <div class="quiz-result-card">
@@ -893,65 +860,25 @@ function renderQuizResult() {
       
       ${renderMediaTag(matchedPerfume.image, 'quiz-result-img', matchedPerfume.name)}
 
-      <div style="background:rgba(212,175,55,0.08); border:1px solid var(--gold-border); border-radius:10px; padding:1.2rem; margin:1.5rem 0; text-align:left;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-          <strong style="color:#fff; font-size:0.9rem;">Combo Fit Recomendado:</strong>
-          <span style="background:#10b981; color:#000; font-size:0.65rem; font-weight:800; padding:0.2rem 0.5rem; border-radius:3px;">
-            AHORRO -$${comboDiscount} MXN
-          </span>
+      <div style="background:rgba(212,175,55,0.08); border:1px solid var(--gold-border); border-radius:10px; padding:1.2rem; margin:1.5rem 0; text-align:center;">
+        <span style="font-size:1.35rem; font-weight:700; color:var(--gold-bright);">
+          $${matchedPerfume.price5ml} MXN
+        </span>
+        <div style="font-size:0.8rem; color:#888; margin-top:0.35rem;">
+          Incluye atomizador metálico de 5ml + grabado láser personalizado gratuito
         </div>
-        <p style="font-size:0.82rem; margin-bottom:0.5rem;">
-          Decant 5ml de <strong>${matchedPerfume.name}</strong> + <strong>${matchedVertice.name}</strong> (${matchedVertice.brand || 'VÉRTICE'})
-        </p>
-        <span style="font-size:1.15rem; font-weight:700; color:var(--gold-bright);">
-          $${(matchedPerfume.price5ml + matchedVertice.price - comboDiscount).toLocaleString()} MXN
-        </span>
-        <span style="font-size:0.8rem; color:#888; text-decoration:line-through; margin-left:0.5rem;">
-          $${(matchedPerfume.price5ml + matchedVertice.price).toLocaleString()} MXN
-        </span>
       </div>
 
       <div style="display:flex; flex-direction:column; gap:0.6rem;">
-        <button class="btn btn-gold btn-large" id="btnAddQuizCombo">
-          <span>AGREGAR EL COMBO RECOMENDADO (-$${comboDiscount} MXN)</span>
+        <button class="btn btn-gold btn-large" id="btnAddQuizDecant">
+          <span>AGREGAR ESTE DECANT A LA BOLSA</span>
           <span>🛍️</span>
-        </button>
-        <button class="btn btn-outline-gold" id="btnOnlyPerfumeQuiz">
-          <span>Solo llevar el Decant 5ml ($${matchedPerfume.price5ml} MXN)</span>
         </button>
       </div>
     </div>
   `;
 
-  document.getElementById('btnAddQuizCombo').onclick = () => {
-    sounds.playSpray();
-    addToCart({
-      id: `decant-${matchedPerfume.id}-${Date.now()}`,
-      refId: matchedPerfume.id,
-      type: 'decant',
-      name: `${matchedPerfume.name} (5ml)`,
-      brand: matchedPerfume.brand,
-      price: matchedPerfume.price5ml,
-      image: matchedPerfume.image,
-      engraving: { text: 'AURA NOIR', color: 'noir', font: 'font-serif' }
-    });
-
-    addToCart({
-      id: `vertice-${matchedVertice.id}-${Date.now()}`,
-      refId: matchedVertice.id,
-      type: 'vertice',
-      name: `${matchedVertice.name} (${matchedVertice.brand || 'VÉRTICE'})`,
-      size: matchedVertice.sizes[0],
-      price: matchedVertice.price,
-      image: matchedVertice.image
-    });
-
-    closeQuiz();
-    showToast(`¡Combo agregado con -$${comboDiscount} MXN de descuento!`, 'success');
-    openCart();
-  };
-
-  document.getElementById('btnOnlyPerfumeQuiz').onclick = () => {
+  document.getElementById('btnAddQuizDecant').onclick = () => {
     sounds.playSpray();
     addToCart({
       id: `decant-${matchedPerfume.id}-${Date.now()}`,
@@ -967,6 +894,7 @@ function renderQuizResult() {
     showToast(`Decant 5ml de ${matchedPerfume.name} agregado a tu bolsa`, 'gold');
     openCart();
   };
+}
 }
 
 /* ===================================================================
@@ -1066,21 +994,11 @@ function renderCart() {
     </div>
   `).join('');
 
-  // Calculate Subtotal & Bundle discounts
+  // Calculate Subtotal
   const subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  const hasDecant = state.cart.some(item => item.type === 'decant' || item.type === 'discovery');
-  const hasVertice = state.cart.some(item => item.type === 'vertice');
-  const bundleDiscount = (hasDecant && hasVertice) ? comboDiscountValue : 0;
-
-  if (bundleDiscount > 0) {
-    els.bundleBanner.classList.remove('hidden');
-    els.bundleBanner.innerHTML = `<span>🎉 <strong>¡Combo Élite Activado!</strong> Descuento cruzado de -$${comboDiscountValue} MXN aplicado por combinar Decant + Prenda.</span>`;
-    els.rowBundleDiscount.classList.remove('hidden');
-    document.getElementById('cartBundleDiscount').textContent = `-$${comboDiscountValue} MXN`;
-  } else {
-    els.bundleBanner.classList.add('hidden');
-    els.rowBundleDiscount.classList.add('hidden');
-  }
+  const bundleDiscount = 0;
+  if (els.bundleBanner) els.bundleBanner.classList.add('hidden');
+  if (els.rowBundleDiscount) els.rowBundleDiscount.classList.add('hidden');
 
   // Free shipping perk bar
   const progress = Math.min(100, Math.round((subtotal / freeShippingThreshold) * 100));
@@ -1159,10 +1077,8 @@ function closeCheckout() {
 
 function updateCheckoutTotal() {
   const subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  const hasDecant = state.cart.some(item => item.type === 'decant' || item.type === 'discovery');
-  const hasVertice = state.cart.some(item => item.type === 'vertice');
-  const bundleDiscount = (hasDecant && hasVertice) ? (state.promotions.comboDiscount || 200) : 0;
-  const discounts = bundleDiscount + state.promoDiscount;
+  const bundleDiscount = 0;
+  const discounts = state.promoDiscount;
 
   let deliveryCost = 0;
   const freeThreshold = state.promotions.freeShippingMin || 600;
@@ -1203,10 +1119,8 @@ function initCheckoutListeners() {
 
     const orderId = `AN-${Math.floor(10000 + Math.random() * 90000)}`;
     const subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-    const hasDecant = state.cart.some(item => item.type === 'decant' || item.type === 'discovery');
-    const hasVertice = state.cart.some(item => item.type === 'vertice');
-    const bundleDiscount = (hasDecant && hasVertice) ? (state.promotions.comboDiscount || 200) : 0;
-    const total = Math.max(0, subtotal - bundleDiscount - state.promoDiscount) + state.deliveryCost;
+    const bundleDiscount = 0;
+    const total = Math.max(0, subtotal - state.promoDiscount) + state.deliveryCost;
 
     let deliveryLabel = 'Entrega Express Tepic';
     if (state.deliveryMethod === 'tepic-pickup') deliveryLabel = 'Pick-up Ciudad del Valle / Plaza Fórum';
@@ -1851,18 +1765,20 @@ function exportDataJsFile() {
    EVENT LISTENERS & BOOTSTRAP
    =================================================================== */
 function setupGlobalEvents() {
-  // Store Switchers
-  els.btnSwitchAura.onclick = () => switchStore('aura');
-  els.btnSwitchVertice.onclick = () => switchStore('vertice');
-  els.brandIdentityLink.onclick = (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  // Store Switchers & Brand Link
+  if (els.btnSwitchAura) els.btnSwitchAura.onclick = () => switchStore('aura');
+  if (els.btnSwitchVertice) els.btnSwitchVertice.onclick = () => switchStore('vertice');
+  if (els.brandIdentityLink) {
+    els.brandIdentityLink.onclick = (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+  }
 
   // Nav Cross Links
-  els.btnGoToVerticeFromBridge.onclick = () => switchStore('vertice');
-  els.btnBackToAuraFromHero.onclick = () => switchStore('aura');
-  els.btnSwitchToAuraFromVerticeBanner.onclick = () => switchStore('aura');
+  if (els.btnGoToVerticeFromBridge) els.btnGoToVerticeFromBridge.onclick = () => switchStore('vertice');
+  if (els.btnBackToAuraFromHero) els.btnBackToAuraFromHero.onclick = () => switchStore('aura');
+  if (els.btnSwitchToAuraFromVerticeBanner) els.btnSwitchToAuraFromVerticeBanner.onclick = () => switchStore('aura');
   if (els.footerLinkVertice) els.footerLinkVertice.onclick = (e) => { e.preventDefault(); switchStore('vertice'); };
 
   // Discovery Set Button

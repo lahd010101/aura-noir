@@ -249,121 +249,12 @@ export const DISCOVERY_SETS = [
     originalValue: 1450,
     badge: "Edición Coleccionista",
     image: "/aura-discovery-box.jpg",
-    description: "Caja rígida magnética forrada en negro mate con grabado hot-stamping, cuna de terciopelo y 3 atomizadores metálicos con grabado láser a elegir: Tom Ford Noir Extreme, Creed Aventus y Xerjoff Naxos. Incluye tarjeta VIP VÉRTICE con $150 MXN de crédito.",
-    includes: ["3 Atomizadores metálicos grabados con láser", "15 ml de extracto original (225+ sprays)", "Tarjeta física VÉRTICE VIP", "Caja rígida con cierre magnético"]
+    description: "Caja rígida magnética forrada en negro mate con grabado hot-stamping, cuna de terciopelo y 3 atomizadores metálicos con grabado láser a elegir: Tom Ford Noir Extreme, Creed Aventus y Xerjoff Naxos. Presentación lista para obsequio o exhibición.",
+    includes: ["3 Atomizadores metálicos grabados con láser", "15 ml de extracto original (225+ sprays)", "Certificado de autenticidad Aura Noir", "Caja rígida con cierre magnético"]
   }
 ];
 
-export const VERTICE_DATA = [
-  {
-    id: "v-tee-black",
-    brand: "VÉRTICE",
-    name: "Heavyweight Boxy Tee 260 GSM // Noir",
-    category: "tees",
-    price: 790,
-    stockRemaining: 14,
-    badge: "Drop 01 // Limitado a 50 pzs",
-    image: "/vertice-streetwear.jpg",
-    description: "Confeccionada con algodón peinado de fibra larga de 260 gramos por metro cuadrado. Cuello cerrado reforzado en rib de 1 pulgada que no se deforma. Bordado micro-alta definición en pecho y estampa serigráfica táctil en espalda.",
-    details: [
-      "100% Algodón Peinado Heavyweight 260 GSM",
-      "Corte Boxy Drop Shoulder contemporáneo",
-      "Bordado HD en hilo plata mate resistente a lavados",
-      "Hecho éticamente en México en tirajes cortos"
-    ],
-    sizes: ["S", "M", "L", "XL"]
-  },
-  {
-    id: "v-hoodie-structural",
-    brand: "VÉRTICE",
-    name: "Structural Hoodie 440 GSM // Carbon",
-    category: "hoodies",
-    price: 1490,
-    stockRemaining: 9,
-    badge: "Pieza Arquitectónica",
-    image: "/vertice-streetwear.jpg",
-    description: "Nuestra pieza más emblemática. 440 GSM de tacto ultra pesado con interior de rizo francés. Capucha doble capa estructurada que se sostiene por sí sola sin necesidad de cordones. Caída limpia e imponente.",
-    details: [
-      "440 GSM French Terry de alta densidad",
-      "Capucha sobredimensionada auto-estructurada",
-      "Bordado dorsal 'ELEVATE YOUR STANDARD' en plata mate",
-      "Prenda pre-encogida con lavado siliconado premium"
-    ],
-    sizes: ["S", "M", "L", "XL"]
-  },
-  {
-    id: "v-pants-wide",
-    brand: "VÉRTICE",
-    name: "Wide-Leg Architecture Sweatpants 420 GSM",
-    category: "bottoms",
-    price: 1190,
-    stockRemaining: 11,
-    badge: "Corte Escultural",
-    image: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=800&q=80",
-    description: "Pantalón de caída ancha y recta con drapeado pesado que descansa sobre tus sneakers. Tiro medio-alto con pretina elástica gruesa y herrajes metálicos plateados grabados con láser.",
-    details: [
-      "420 GSM algodón pesado",
-      "Cintura reforzada con ojillos de acero inoxidable",
-      "Bolsillos profundos con cierre oculto",
-      "Caída recta fluida sin puño inferior"
-    ],
-    sizes: ["S", "M", "L", "XL"]
-  },
-  {
-    id: "obsidian-acid-tee",
-    brand: "OBSIDIAN ARCHIVE",
-    name: "Acid-Wash Raw Boxy Tee 280 GSM",
-    category: "tees",
-    price: 850,
-    stockRemaining: 8,
-    badge: "Colaboración Especial",
-    image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
-    description: "Teñido mineral con efecto lavado al ácido artesanal. Cada prenda presenta variaciones tonales únicas. Gráfica en tipografía gótica plateada en el pecho.",
-    details: [
-      "280 GSM algodón peinado premium",
-      "Lavado ácido artesanal de grano fino",
-      "Estampa serigráfica al agua tacto cero",
-      "Etiqueta numerada individualmente"
-    ],
-    sizes: ["M", "L", "XL"]
-  },
-  {
-    id: "atelier-denim-jacket",
-    brand: "ATELIER NAYARIT",
-    name: "Heavy Raw Denim Overshirt 14oz // Obsidian",
-    category: "outerwear",
-    price: 1650,
-    stockRemaining: 6,
-    badge: "Hecho a Mano en Nayarit",
-    image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
-    description: "Mezclilla rígida de 14 onzas sin lavar con orillo japonés. Botones de latón envejecido y costuras reforzadas con remaches de cobre. Silueta boxy moderna.",
-    details: [
-      "Denim crudo rígido de 14oz 100% algodón",
-      "Bolsillos dobles con solapa arquitectónica",
-      "Botones metálicos grabados",
-      "Confección artesanal en Tepic"
-    ],
-    sizes: ["S", "M", "L"]
-  },
-  {
-    id: "v-metal-cardholder",
-    brand: "VÉRTICE",
-    name: "Tactical Brushed Titanium Cardholder",
-    category: "accessories",
-    price: 520,
-    stockRemaining: 18,
-    badge: "Metal Goods",
-    image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=800&q=80",
-    description: "Tarjetero ultraligero de aleación de titanio cepillado con bloqueo RFID. Grabado láser 'VERTICE // ELEVATE YOUR STANDARD'. Diseñado para llevar lo indispensable sin bultos.",
-    details: [
-      "Aleación de aluminio y titanio aeroespacial",
-      "Bloqueo anti-clonación RFID / NFC",
-      "Capacidad para 1 a 12 tarjetas + clip para billetes",
-      "Grabado láser inalterable"
-    ],
-    sizes: ["Única"]
-  }
-];
+export const VERTICE_DATA = [];
 
 export const DEFAULT_PROMOTIONS = {
   comboDiscount: 200,
@@ -373,7 +264,7 @@ export const DEFAULT_PROMOTIONS = {
   coupons: [
     { code: "AURA150", discount: 150, description: "Descuento VIP General" },
     { code: "TEPICVIP", discount: 100, description: "Descuento Local Tepic" },
-    { code: "VERTICE200", discount: 200, description: "Promoción Especial Streetwear" }
+    { code: "PRIMERACOMPRA", discount: 100, description: "Bienvenida Aura Noir" }
   ]
 };
 
@@ -396,12 +287,12 @@ export const QUIZ_QUESTIONS = [
   },
   {
     id: 2,
-    question: "¿Cuál es tu estilo preferido al vestir?",
+    question: "¿Qué vibra deseas proyectar con tu presencia?",
     options: [
-      { text: "Minimalista oscuro: Hoodie negro pesado, accesorios metálicos", verticePair: "v-hoodie-structural" },
-      { text: "Clean contemporáneo: Playera blanca gruesa, sneakers impecables", verticePair: "v-tee-black" },
-      { text: "Urban vanguard: Pantalón de corte ancho, siluetas holgadas", verticePair: "v-pants-wide" },
-      { text: "Accesorios de alto impacto: Tarjeteros de titanio, cadenas finas", verticePair: "v-metal-cardholder" }
+      { text: "Misterio seductor y calidez magnética", style: "dark" },
+      { text: "Pulcritud de lujo, frescura y energía limpia", style: "clean" },
+      { text: "Autoridad ejecutiva, exclusividad y alta alcurnia", style: "luxury" },
+      { text: "Impacto imponente que atrape miradas y cumplidos al pasar", style: "beast" }
     ]
   },
   {
