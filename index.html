@@ -342,12 +342,14 @@
             <div class="discovery-info-col">
               <span class="section-tag">UNBOXING DEFINITIVO</span>
               <h2>Aura Noir Monolith Set (3 x 5ml)</h2>
-              <p>El cofre rígido magnético de regalo. Incluye 3 atomizadores metálicos con grabado láser a tu gusto, 225+ atomizaciones totales y la tarjeta VIP con <strong>$150 MXN de crédito</strong> para tu primera prenda en VÉRTICE.</p>
+              <p class="aura-only">El cofre rígido magnético de regalo. Incluye 3 atomizadores metálicos con grabado láser a tu gusto, 225+ atomizaciones totales y tarjeta de autenticidad sellada de Pureza Garantizada.</p>
+              <p class="vertice-only">El cofre rígido magnético de regalo. Incluye 3 atomizadores metálicos con grabado láser a tu gusto, 225+ atomizaciones totales y la tarjeta VIP con <strong>$150 MXN de crédito</strong> para tu primera prenda en VÉRTICE.</p>
               
               <ul class="discovery-bullets">
                 <li>✦ 3 Fragancias nicho o diseñador en 5ml de alta densidad</li>
                 <li>✦ Cilindros metálicos en Negro, Oro Champagne y Plata</li>
-                <li>✦ Tarjeta física de membresía VÉRTICE con relieve plateado</li>
+                <li class="aura-only">✦ Tarjeta física de autenticidad y garantía de extracción pura</li>
+                <li class="vertice-only">✦ Tarjeta física de membresía VÉRTICE con relieve plateado</li>
                 <li>✦ Caja rígida para exhibición en tu tocador o buró</li>
               </ul>
 
@@ -423,7 +425,8 @@
             </div>
             <div class="review-card">
               <div class="stars">★★★★★</div>
-              <p>"Pedí el cofre con 3 decants y me llegó al día siguiente aquí en Tepic. La tarjeta de descuento de VÉRTICE ya la usé para el hoodie de 440g y la tela está pesadísima."</p>
+              <p class="aura-only">"Pedí el cofre con 3 decants y me llegó al día siguiente aquí en Tepic. El grabado láser de mi nombre en los atomizadores se ve de primer nivel y los perfumes son 100% auténticos."</p>
+              <p class="vertice-only">"Pedí el cofre con 3 decants y me llegó al día siguiente aquí en Tepic. La tarjeta de descuento de VÉRTICE ya la usé para el hoodie de 440g y la tela está pesadísima."</p>
               <div class="reviewer-meta">
                 <strong>Carlos Mendoza</strong>
                 <small>Tepic, Nayarit • Cliente VIP</small>
@@ -820,18 +823,23 @@
       </div>
 
       <!-- LAUNCH MODE TOGGLE BAR -->
-      <div class="admin-launch-mode-bar">
+      <div class="admin-launch-mode-bar" id="adminLaunchModeBar">
         <div class="launch-mode-content">
           <div class="launch-mode-icon">🚀</div>
           <div>
-            <strong style="font-size:0.85rem; letter-spacing:0.05em; color:#fff;">MODO PÚBLICO:</strong>
-            <span id="adminVerticeStatusText" style="color: #10b981; font-weight: 700; margin-left: 0.35rem; font-size:0.85rem;">SOLO AURA NOIR (Perfumería)</span>
-            <p style="margin: 0.2rem 0 0; font-size: 0.78rem; color: #888;">
-              VÉRTICE Streetwear se mantiene oculto a los clientes para no confundir mientras se desarrolla la mercancía. Actívalo aquí cuando estés listo para el lanzamiento oficial.
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <strong style="font-size:0.85rem; letter-spacing:0.05em; color:#fff;">MODO PÚBLICO:</strong>
+              <span id="adminVerticeStatusText" style="color: #10b981; font-weight: 700; font-size:0.85rem;">SOLO AURA NOIR (Perfumería)</span>
+            </div>
+            <p style="margin: 0.25rem 0 0; font-size: 0.78rem; color: #888;">
+              VÉRTICE Streetwear se mantiene oculto a los clientes para no confundir mientras se desarrolla la mercancía.
             </p>
           </div>
         </div>
-        <div class="launch-mode-toggle-action">
+        <div class="launch-mode-toggle-action" style="display:flex; align-items:center; gap:0.8rem;">
+          <button type="button" class="btn btn-sm btn-outline-gold" id="btnToggleVerticeAction" style="font-size:0.75rem; padding:0.4rem 0.8rem;">
+            Desactivar VÉRTICE
+          </button>
           <label class="switch-toggle" title="Activar/Desactivar VÉRTICE en la web">
             <input type="checkbox" id="adminToggleVertice">
             <span class="switch-slider"></span>

@@ -247,6 +247,7 @@ const els = {
   btnCloseAdmin: document.getElementById('btnCloseAdmin'),
   adminToggleVertice: document.getElementById('adminToggleVertice'),
   adminVerticeStatusText: document.getElementById('adminVerticeStatusText'),
+  btnToggleVerticeAction: document.getElementById('btnToggleVerticeAction'),
   adminTabs: document.querySelectorAll('.admin-tab'),
   adminTabPanes: document.querySelectorAll('.admin-tab-pane'),
 
@@ -300,20 +301,45 @@ function showToast(message, type = 'gold') {
    LAUNCH MODE & FEATURE TOGGLE (AURA NOIR vs DUAL STORE)
    =================================================================== */
 function isVerticeEnabled() {
-  // 1. URL parameter preview (e.g., ?vertice=preview or ?vertice=1 or ?vertice=true)
-  const params = new URLSearchParams(window.location.search);
-  if (params.has('vertice')) {
-    const val = params.get('vertice');
-    if (val === '0' || val === 'false') return false;
-    return true;
-  }
-  // 2. LocalStorage setting toggled in Admin Panel
+  // 1. Explicit setting saved in browser (localStorage has highest priority!)
   const savedSetting = localStorage.getItem('aura_enable_vertice');
   if (savedSetting !== null) {
     return savedSetting === 'true';
   }
+
+  // 2. URL parameter preview (e.g., ?vertice=1 or ?vertice=preview)
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('vertice')) {
+    const val = params.get('vertice');
+    if (val === '0' || val === 'false' || val === 'no' || val === 'off') return false;
+    return true;
+  }
+
   // 3. Master config in data.js
   return typeof APP_CONFIG !== 'undefined' && !!APP_CONFIG.ENABLE_VERTICE;
+}
+
+function setVerticeEnabledState(enabled) {
+  localStorage.setItem('aura_enable_vertice', enabled ? 'true' : 'false');
+
+  // Strip ?vertice query parameter from the browser URL address bar to avoid sticky state
+  try {
+    const url = new URL(window.location.href);
+    if (url.searchParams.has('vertice')) {
+      url.searchParams.delete('vertice');
+      const cleanUrl = url.pathname + (url.search ? url.search : '') + url.hash;
+      window.history.replaceState({}, '', cleanUrl);
+    }
+  } catch (err) {}
+
+  applyVerticeVisibility();
+  sounds.playClick();
+
+  if (enabled) {
+    showToast('🚀 VÉRTICE ACTIVADO: Ahora la tienda dual está visible.', 'success');
+  } else {
+    showToast('🔒 VÉRTICE DESACTIVADO: La tienda ahora es 100% Aura Noir Decants.', 'info');
+  }
 }
 
 function applyVerticeVisibility() {
@@ -327,6 +353,12 @@ function applyVerticeVisibility() {
   // Update Admin toggle UI if available
   if (els.adminToggleVertice) {
     els.adminToggleVertice.checked = enabled;
+  }
+  if (els.btnToggleVerticeAction) {
+    els.btnToggleVerticeAction.textContent = enabled ? 'Desactivar VÉRTICE' : 'Activar VÉRTICE';
+    els.btnToggleVerticeAction.className = enabled 
+      ? 'btn btn-sm btn-outline-silver' 
+      : 'btn btn-sm btn-gold';
   }
   if (els.adminVerticeStatusText) {
     if (enabled) {
@@ -1449,15 +1481,15 @@ function initBackOffice() {
   if (els.adminToggleVertice) {
     els.adminToggleVertice.checked = isVerticeEnabled();
     els.adminToggleVertice.onchange = (e) => {
-      const isChecked = e.target.checked;
-      localStorage.setItem('aura_enable_vertice', isChecked ? 'true' : 'false');
-      applyVerticeVisibility();
-      sounds.playClick();
-      if (isChecked) {
-        showToast('🚀 VÉRTICE ACTIVADO: Ahora la tienda dual está visible para tus clientes.', 'success');
-      } else {
-        showToast('🔒 VÉRTICE OCULTO: La web ahora muestra únicamente Aura Noir Decants.', 'info');
-      }
+      setVerticeEnabledState(e.target.checked);
+    };
+  }
+
+  if (els.btnToggleVerticeAction) {
+    els.btnToggleVerticeAction.onclick = (e) => {
+      e.preventDefault();
+      const current = isVerticeEnabled();
+      setVerticeEnabledState(!current);
     };
   }
 
@@ -2065,14 +2097,7 @@ function setupGlobalEvents() {
     if (e.ctrlKey && e.shiftKey && e.code === 'KeyV') {
       e.preventDefault();
       const current = isVerticeEnabled();
-      localStorage.setItem('aura_enable_vertice', (!current).toString());
-      applyVerticeVisibility();
-      sounds.playClick();
-      if (!current) {
-        showToast('🔓 [Atajo de Desarrollador] Modo Dual VÉRTICE Activado para pruebas locales.', 'success');
-      } else {
-        showToast('🔒 [Atajo de Desarrollador] VÉRTICE Ocultado. Modo público solo Aura Noir.', 'info');
-      }
+      setVerticeEnabledState(!current);
     }
   });
 }
