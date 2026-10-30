@@ -1458,53 +1458,77 @@ function initCheckoutListeners() {
 }
 
 /* ===================================================================
-   LIVE VISUAL WYSIWYG EDITOR SYSTEM
+   LIVE VISUAL WYSIWYG EDITOR SYSTEM (UNIVERSAL)
    =================================================================== */
 let isVisualEditorActive = false;
 
-function setupEditableDOM() {
-  const targetSelectors = [
-    '.hero-title',
-    '.hero-subtitle',
-    '.tagline-sub',
-    '.section-tag',
-    '.section-title',
-    '.section-subtitle',
-    '.concept-bridge-grid h2',
-    '.concept-copy-col p',
-    '.callout-text strong',
-    '.callout-text span',
-    '.discovery-info-col h2',
-    '.discovery-info-col p',
-    '.discovery-bullets li',
-    '.review-card p',
-    '.reviewer-meta strong',
-    '.reviewer-meta small',
-    '.vertice-hero-title',
-    '.vertice-hero-desc',
-    '.announcement-bar .ticker-content span:not(.ticker-dot)',
-    '.site-footer .footer-col h4',
-    '.site-footer .footer-col li',
-    '.site-footer .footer-bottom p'
-  ];
+function getDomPath(el) {
+  if (el.id) return `#${el.id}`;
+  const stack = [];
+  let curr = el;
+  while (curr && curr.parentNode && curr.tagName !== 'BODY' && curr.tagName !== 'HTML') {
+    let sibIndex = 0;
+    let sibCount = 0;
+    const parent = curr.parentNode;
+    for (let i = 0; i < parent.children.length; i++) {
+      const sib = parent.children[i];
+      if (sib.tagName === curr.tagName) {
+        if (sib === curr) sibIndex = sibCount;
+        sibCount++;
+      }
+    }
+    const name = curr.tagName.toLowerCase();
+    stack.unshift(sibCount > 1 ? `${name}:nth-of-type(${sibIndex + 1})` : name);
+    curr = parent;
+  }
+  return stack.join(' > ');
+}
 
-  let counter = 0;
+function isEligibleForEditing(el) {
+  if (!el || el.nodeType !== 1) return false;
+  // Ignore admin modals, form inputs, scripts, and editor toolbar
+  if (el.closest('#liveEditorToolbar') || el.closest('.modal-backdrop') || el.closest('.toast-container')) {
+    return false;
+  }
+  const tag = el.tagName.toUpperCase();
+  if (['SCRIPT', 'STYLE', 'INPUT', 'TEXTAREA', 'SELECT', 'OPTION', 'SVG', 'PATH', 'IMG', 'VIDEO', 'AUDIO'].includes(tag)) {
+    return false;
+  }
+
+  // Check direct non-whitespace text
+  const text = (el.textContent || '').trim();
+  if (!text) return false;
+
+  // Leaf elements or text containers
+  if (el.children.length === 0) return true;
+  if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'P', 'LI', 'SPAN', 'STRONG', 'B', 'EM', 'SMALL', 'A', 'BUTTON', 'LABEL', 'BLOCKQUOTE'].includes(tag)) {
+    return true;
+  }
+  return false;
+}
+
+function setupEditableDOM() {
   const savedTexts = JSON.parse(localStorage.getItem('aura_site_texts') || '{}');
 
-  targetSelectors.forEach(selector => {
-    document.querySelectorAll(selector).forEach(el => {
-      // Don't mark modal internals, buttons or toolbar
-      if (el.closest('.modal-card') || el.closest('#liveEditorToolbar')) return;
+  // Query all candidates in body
+  const allElements = document.querySelectorAll(
+    '#appMain *, #siteHeader *, #announcementBar *, #siteFooter *, .discovery-section *, .catalog-section *, .concept-bridge-section *, .testimonials-section *, .laser-studio-section *'
+  );
 
-      counter++;
-      const key = el.dataset.editable || `editable_elem_${counter}`;
+  allElements.forEach(el => {
+    if (!isEligibleForEditing(el)) return;
+
+    // Generate or read persistent path key
+    let key = el.dataset.editable;
+    if (!key) {
+      key = getDomPath(el);
       el.dataset.editable = key;
+    }
 
-      // Apply saved content if exists
-      if (savedTexts[key] !== undefined) {
-        el.innerHTML = savedTexts[key];
-      }
-    });
+    // Apply saved text if available
+    if (savedTexts[key] !== undefined) {
+      el.innerHTML = savedTexts[key];
+    }
   });
 }
 
@@ -1512,7 +1536,11 @@ function toggleVisualEditor(active) {
   isVisualEditorActive = active;
   document.body.classList.toggle('visual-editor-active', active);
 
-  document.querySelectorAll('[data-editable]').forEach(el => {
+  // Refresh editable elements so dynamic cards and all blocks are captured
+  setupEditableDOM();
+
+  const editableElements = document.querySelectorAll('[data-editable]');
+  editableElements.forEach(el => {
     if (active) {
       el.setAttribute('contenteditable', 'true');
       el.setAttribute('spellcheck', 'false');
@@ -1524,7 +1552,7 @@ function toggleVisualEditor(active) {
 
   if (active) {
     if (els.adminModal) els.adminModal.classList.remove('open');
-    showToast('✏️ Editor Visual Activado: Haz clic en cualquier texto para modificarlo.', 'gold');
+    showToast(`✏️ Editor Visual Activado: ${editableElements.length} elementos listos para editar.`, 'gold');
     sounds.playClick();
   } else {
     showToast('Modo de edición finalizado.', 'info');
@@ -1542,16 +1570,32 @@ function saveVisualEdits() {
 
   localStorage.setItem('aura_site_texts', JSON.stringify(texts));
   sounds.playLaser();
-  showToast('💾 ¡Todos los textos de la página han sido guardados!', 'success');
+  showToast(`💾 ¡Guardado! Se actualizaron ${Object.keys(texts).length} elementos de la tienda.`, 'success');
 }
 
 function resetVisualEdits() {
-  if (confirm('¿Deseas restablecer todos los textos originales de la página?')) {
+  if (confirm('¿Deseas restablecer todos los textos originales de la página a sus valores iniciales?')) {
     localStorage.removeItem('aura_site_texts');
     showToast('Textos restablecidos a los originales de fábrica.', 'info');
     setTimeout(() => window.location.reload(), 400);
   }
 }
+
+// Global click interceptor in editor mode:
+// Prevents links/buttons from triggering or jumping when user wants to edit their text
+document.addEventListener('click', (e) => {
+  if (!isVisualEditorActive) return;
+  if (e.target.closest('#liveEditorToolbar') || e.target.closest('.modal-card')) return;
+
+  const editable = e.target.closest('[data-editable]');
+  if (editable) {
+    // If inside a button or anchor link, prevent action so user can type!
+    if (editable.tagName === 'A' || editable.tagName === 'BUTTON' || editable.closest('a') || editable.closest('button')) {
+      e.preventDefault();
+      editable.focus();
+    }
+  }
+}, true);
 
 /* ===================================================================
    BACK OFFICE & ADMIN CONTROL PANEL ENGINE
@@ -2365,7 +2409,6 @@ function setupGlobalEvents() {
 
 /* Initialization */
 document.addEventListener('DOMContentLoaded', () => {
-  setupEditableDOM();
   applyVerticeVisibility();
   renderDynamicNav();
   initLaserStudio();
@@ -2378,4 +2421,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackOffice();
   setupGlobalEvents();
   renderCart();
+  setupEditableDOM();
 });
