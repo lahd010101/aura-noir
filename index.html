@@ -802,11 +802,31 @@
     </div>
   </div>
 
-  <!-- FLOATING BACK OFFICE LAUNCHER -->
-  <button class="admin-float-btn" id="btnFloatAdmin" title="Abrir Panel de Control / Back Office">
-    <span class="admin-gear-icon">⚙️</span>
-    <span class="admin-float-text">Back Office</span>
-  </button>
+  <!-- ============================================== -->
+  <!-- MODAL: BACK OFFICE SECURITY AUTH (PIN MAESTRO) -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="adminAuthModal">
+    <div class="modal-card modal-auth" style="max-width: 420px; text-align: center; padding: 2.5rem 2rem; background:#0d0f13; border: 1px solid rgba(212,175,55,0.4); box-shadow: 0 25px 70px rgba(0,0,0,0.95), 0 0 35px rgba(212,175,55,0.15);">
+      <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔒</div>
+      <span class="section-tag" style="font-size: 0.7rem; letter-spacing: 0.18em;">ACCESO PRIVADO • CONCIERGE</span>
+      <h3 style="font-size: 1.45rem; margin: 0.4rem 0 0.8rem; font-family: var(--font-serif);" class="text-gold-gradient">Aura Noir Back Office</h3>
+      <p style="font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; line-height: 1.5;">
+        Introduce tu PIN maestro para gestionar precios, inventario, cupones y el lanzamiento de VÉRTICE.
+      </p>
+
+      <form id="formAdminAuth">
+        <div style="margin-bottom: 1.2rem;">
+          <input type="password" id="inputAdminPin" placeholder="PIN Maestro (def: 2026)" maxlength="12"
+                 style="width: 100%; text-align: center; font-size: 1.3rem; letter-spacing: 0.25em; padding: 0.75rem 1rem; background: #000; border: 1px solid var(--gold-border); border-radius: 6px; color: #fff;" autocomplete="off" autofocus required />
+          <div id="adminAuthError" style="color: #ef4444; font-size: 0.78rem; margin-top: 0.6rem; display: none;">PIN incorrecto. Intenta de nuevo.</div>
+        </div>
+        <div style="display: flex; gap: 0.6rem;">
+          <button type="button" class="btn btn-outline-silver" id="btnCancelAdminAuth" style="flex: 1;">Cancelar</button>
+          <button type="submit" class="btn btn-gold" style="flex: 2;">Desbloquear</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- ============================================== -->
   <!-- MODAL: BACK OFFICE / ADMIN CONTROL PANEL -->
@@ -992,6 +1012,15 @@
             <p>Si deseas reiniciar todo el catálogo a los datos originales de demostración, puedes restaurarlos con un solo clic.</p>
             <button class="btn btn-outline-silver btn-block" id="btnResetToDefaults">Restablecer Datos de Fábrica</button>
           </div>
+
+          <div class="sync-action-box">
+            <h4>🔐 Cambiar PIN Maestro de Acceso</h4>
+            <p>Configura tu clave personal para acceder a este panel. El PIN actual predeterminado es <strong>2026</strong>.</p>
+            <div style="display:flex; gap:0.5rem; margin-top:0.8rem; align-items:center;">
+              <input type="password" id="inputNewAdminPin" placeholder="Nuevo PIN" maxlength="12" style="background:#000; border:1px solid #444; border-radius:4px; padding:0.4rem 0.8rem; color:#fff; width:130px;" />
+              <button type="button" class="btn btn-outline-gold btn-sm" id="btnChangeAdminPin">Guardar PIN</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1056,24 +1085,20 @@
       </div>
 
       <div class="footer-col">
-        <h4>Atención & Administración</h4>
+        <h4>Atención al Cliente</h4>
         <ul>
           <li>Entregas Express en Tepic (Mismo Día)</li>
           <li>Pick-up Ciudad del Valle / Plaza Fórum</li>
           <li>WhatsApp Directo: +52 (311) 000-0000</li>
-          <li>
-            <button class="btn-footer-admin-link" id="btnFooterOpenAdmin">
-              🔒 Acceso Back Office (Admin)
-            </button>
-          </li>
+          <li>Horario: Lunes a Sábado 10:00 - 20:00 hrs</li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div class="container bottom-flex">
-        <p class="aura-only">© 2026 AURA NOIR. Decants de Perfumes de Lujo y Nicho. Tepic, Nayarit. Todos los derechos reservados.</p>
-        <p class="vertice-only">© 2026 AURA NOIR & VÉRTICE. Todos los derechos reservados. Hecho para hombres que marcan su propio estándar.</p>
+        <p class="aura-only"><span class="secret-admin-trigger">©</span> 2026 AURA NOIR. Decants de Perfumes de Lujo y Nicho. Tepic, Nayarit. Todos los derechos reservados.</p>
+        <p class="vertice-only"><span class="secret-admin-trigger">©</span> 2026 AURA NOIR & VÉRTICE. Todos los derechos reservados. Hecho para hombres que marcan su propio estándar.</p>
         <div class="payment-icons-row">
           <span>VISA</span>
           <span>MASTERCARD</span>

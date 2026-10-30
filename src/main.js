@@ -241,8 +241,11 @@ const els = {
   footerLinkVertice: document.getElementById('footerLinkVertice'),
 
   // Back Office Elements
-  btnFloatAdmin: document.getElementById('btnFloatAdmin'),
-  btnFooterOpenAdmin: document.getElementById('btnFooterOpenAdmin'),
+  adminAuthModal: document.getElementById('adminAuthModal'),
+  formAdminAuth: document.getElementById('formAdminAuth'),
+  inputAdminPin: document.getElementById('inputAdminPin'),
+  btnCancelAdminAuth: document.getElementById('btnCancelAdminAuth'),
+  adminAuthError: document.getElementById('adminAuthError'),
   adminModal: document.getElementById('adminModal'),
   btnCloseAdmin: document.getElementById('btnCloseAdmin'),
   adminToggleVertice: document.getElementById('adminToggleVertice'),
@@ -269,6 +272,8 @@ const els = {
 
   btnExportDataJs: document.getElementById('btnExportDataJs'),
   btnResetToDefaults: document.getElementById('btnResetToDefaults'),
+  inputNewAdminPin: document.getElementById('inputNewAdminPin'),
+  btnChangeAdminPin: document.getElementById('btnChangeAdminPin'),
 
   adminItemFormModal: document.getElementById('adminItemFormModal'),
   btnCloseItemForm: document.getElementById('btnCloseItemForm'),
@@ -1471,11 +1476,102 @@ function initBackOffice() {
 
   const closeAdmin = () => {
     els.adminModal.classList.remove('open');
+    if (window.location.hash === '#admin' || window.location.hash === '#backoffice') {
+      history.replaceState(null, null, window.location.pathname + window.location.search);
+    }
   };
 
-  if (els.btnFloatAdmin) els.btnFloatAdmin.onclick = openAdmin;
-  if (els.btnFooterOpenAdmin) els.btnFooterOpenAdmin.onclick = openAdmin;
+  // Request Admin Access (Protected by PIN)
+  window.appRequestAdminAccess = () => {
+    if (sessionStorage.getItem('aura_admin_auth') === 'true') {
+      openAdmin();
+    } else {
+      if (els.adminAuthModal) {
+        els.adminAuthModal.classList.add('open');
+        if (els.inputAdminPin) {
+          els.inputAdminPin.value = '';
+          setTimeout(() => els.inputAdminPin.focus(), 150);
+        }
+        if (els.adminAuthError) els.adminAuthError.style.display = 'none';
+      }
+    }
+  };
+
+  // PIN Authentication Form Handlers
+  if (els.formAdminAuth) {
+    els.formAdminAuth.onsubmit = (e) => {
+      e.preventDefault();
+      const enteredPin = (els.inputAdminPin.value || '').trim();
+      const currentPin = localStorage.getItem('aura_admin_pin') || '2026';
+      if (enteredPin === currentPin) {
+        sessionStorage.setItem('aura_admin_auth', 'true');
+        els.adminAuthModal.classList.remove('open');
+        openAdmin();
+        showToast('🔓 Acceso concedido al Back Office', 'success');
+      } else {
+        if (els.adminAuthError) {
+          els.adminAuthError.style.display = 'block';
+          els.inputAdminPin.focus();
+          els.inputAdminPin.select();
+        }
+        sounds.playClick();
+      }
+    };
+  }
+
+  if (els.btnCancelAdminAuth) {
+    els.btnCancelAdminAuth.onclick = () => {
+      els.adminAuthModal.classList.remove('open');
+      if (window.location.hash === '#admin' || window.location.hash === '#backoffice') {
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+      }
+    };
+  }
+
+  // URL Hash Watcher: #admin or #backoffice or ?admin
+  const checkAdminAccessUrl = () => {
+    const hash = (window.location.hash || '').toLowerCase();
+    const search = new URLSearchParams(window.location.search);
+    if (hash === '#admin' || hash === '#backoffice' || search.has('admin')) {
+      window.appRequestAdminAccess();
+    }
+  };
+
+  window.addEventListener('hashchange', checkAdminAccessUrl);
+  checkAdminAccessUrl();
+
+  // Stealth Triple Click on © Copyright Symbol in Footer
+  let secretAdminClicks = 0;
+  let secretAdminTimer = null;
+  document.querySelectorAll('.secret-admin-trigger').forEach(trigger => {
+    trigger.style.cursor = 'default';
+    trigger.onclick = () => {
+      secretAdminClicks++;
+      clearTimeout(secretAdminTimer);
+      if (secretAdminClicks >= 3) {
+        secretAdminClicks = 0;
+        window.appRequestAdminAccess();
+      } else {
+        secretAdminTimer = setTimeout(() => { secretAdminClicks = 0; }, 1200);
+      }
+    };
+  });
+
   if (els.btnCloseAdmin) els.btnCloseAdmin.onclick = closeAdmin;
+
+  // Change Admin PIN Handler
+  if (els.btnChangeAdminPin && els.inputNewAdminPin) {
+    els.btnChangeAdminPin.onclick = () => {
+      const newPin = els.inputNewAdminPin.value.trim();
+      if (!newPin || newPin.length < 4) {
+        showToast('El PIN debe tener al menos 4 caracteres', 'warning');
+        return;
+      }
+      localStorage.setItem('aura_admin_pin', newPin);
+      els.inputNewAdminPin.value = '';
+      showToast(`PIN Maestro actualizado correctamente a: ${newPin}`, 'success');
+    };
+  }
 
   // Launch Mode Toggle (Vértice Feature Flag)
   if (els.adminToggleVertice) {
@@ -2098,6 +2194,13 @@ function setupGlobalEvents() {
       e.preventDefault();
       const current = isVerticeEnabled();
       setVerticeEnabledState(!current);
+    }
+    // Secret Owner Shortcut: Press Ctrl + Shift + A (or Alt + A) to open Back Office directly
+    if ((e.ctrlKey && e.shiftKey && e.code === 'KeyA') || (e.altKey && e.code === 'KeyA')) {
+      e.preventDefault();
+      if (typeof window.appRequestAdminAccess === 'function') {
+        window.appRequestAdminAccess();
+      }
     }
   });
 }
