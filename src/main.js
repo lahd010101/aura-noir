@@ -2355,7 +2355,7 @@ function setupGlobalEvents() {
       type: 'discovery',
       name: 'Aura Noir Monolith Set (3x5ml) + Tarjeta VIP 15% OFF',
       price: set.price,
-      image: '/aura-discovery-box.jpg',
+      image: '/aura-discovery-box-vip.jpg',
       engraving: {
         text: 'MONOLITH VIP',
         color: 'noir',
