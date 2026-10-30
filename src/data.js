@@ -258,9 +258,9 @@ export const DISCOVERY_SETS = [
     price: 1190,
     originalValue: 1450,
     badge: "Edición Coleccionista",
-    image: "/aura-discovery-box.jpg",
-    description: "Caja rígida magnética forrada en negro mate con grabado hot-stamping, cuna de terciopelo y 3 atomizadores metálicos con grabado láser a elegir: Tom Ford Noir Extreme, Creed Aventus y Xerjoff Naxos. Incluye tarjeta VIP VÉRTICE con $150 MXN de crédito.",
-    includes: ["3 Atomizadores metálicos grabados con láser", "15 ml de extracto original (225+ sprays)", "Tarjeta física VÉRTICE VIP", "Caja rígida con cierre magnético"]
+    image: "./aura-discovery-box-vip15.jpg?v=20261030",
+    description: "Caja rígida magnética forrada en negro mate con grabado hot-stamping, cuna de terciopelo y 3 atomizadores metálicos con grabado láser a elegir: Tom Ford Noir Extreme, Creed Aventus y Xerjoff Naxos. Incluye exclusiva Tarjeta VIP Aura Noir con 15% de descuento en tu próxima compra mayor a $500 MXN.",
+    includes: ["3 Atomizadores metálicos grabados con láser", "15 ml de extracto original (225+ sprays)", "Tarjeta física VIP Aura Noir 15% OFF", "Caja rígida con cierre magnético"]
   }
 ];
 
